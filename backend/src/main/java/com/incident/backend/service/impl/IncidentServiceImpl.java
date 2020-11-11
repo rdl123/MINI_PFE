@@ -61,6 +61,7 @@ public class IncidentServiceImpl implements IncidentService {
         Specification<Incident> spec = null;
         Specification<Incident> finalSpec = null;
         if (customFilter.getStatut() != null) {
+        	
             finalSpec = IncidentSpecification.statutEqual(customFilter.getStatut());
         }
         if (customFilter.getProvince() != null) {
