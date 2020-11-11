@@ -26,7 +26,10 @@ public class User {
     private String fullname;
 
     private String password;
-    private Long role;
+    
+    @ManyToOne
+    private Role role;
+    
     private String Organisme;
     private String Email;
     private String Telephone;
@@ -51,7 +54,7 @@ public class User {
         this.secteur = secteur;
     }
 
-    public User(Long id, String username, String fullname, String password, Long role, String organisme, String email, String telephone, Secteur secteur) {
+    public User(Long id, String username, String fullname, String password, Role role, String organisme, String email, String telephone, Secteur secteur) {
         Id = id;
         this.username = username;
         this.fullname = fullname;
@@ -133,11 +136,12 @@ public class User {
         this.password = password;
     }
 
-    public Long getRole() {
+    public Role getRole() {
         return role;
     }
-
-    public void setRole(Long role) {
+    
+    @JsonSetter
+    public void setRole(Role role) {
         this.role = role;
     }
 }

@@ -163,7 +163,7 @@ public class IncidentController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=dateFormat.format(date);
         incident.setDate(date);
-        incident.setStatut("declare");
+        //incident.setStatut(statut);
          //incidentService.getGeometry();
         incidentService.save(incident);
     }
