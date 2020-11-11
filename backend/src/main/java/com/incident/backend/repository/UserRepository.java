@@ -13,4 +13,6 @@ public interface UserRepository extends JpaRepository<User,Long> {
     public User findById(long Id);
     @Query("select s.secteur,u.id,u.fullname from User u join  Secteur s on  u.secteur.id = s.id ")
     List  findProfBySect();
+    @Query("select r.role,u.id,u.fullname from User u join  Role r on  u.role.id = r.id ")
+    List  findProfBySectRole();
 }

@@ -26,13 +26,16 @@ public class Incident<geometry> implements Serializable {
     private String ime;
     private float latitude;
     private float longitude;
-    private String statut;
+    
     private String photo;
     private String motif;
     private String geom;
     @ManyToOne
     private Secteur secteur;
-
+    
+    @ManyToOne
+    private Etat statut;
+    
     @ManyToOne
     private User user;
 
@@ -52,7 +55,7 @@ public class Incident<geometry> implements Serializable {
         this.user = user;
     }
 
-    public Incident(long id, Date date, String description, String ime, float latitude, float longitude, String statut, String photo, String motif, String geom, Secteur secteur, User user, Type type, Province province) {
+    public Incident(long id,Etat statut, Date date, String description, String ime, float latitude, float longitude, String photo, String motif, String geom, Secteur secteur, User user, Type type, Province province) {
         Id = id;
         this.date = date;
         this.description = description;
@@ -141,7 +144,7 @@ public class Incident<geometry> implements Serializable {
         this.longitude = longitude;
     }
 
-    public String getStatut() {
+    public Etat getStatut() {
         return statut;
     }
     @JsonSetter
@@ -169,7 +172,7 @@ public class Incident<geometry> implements Serializable {
         this.province = province;
     }
     @JsonSetter
-    public void setStatut(String statut) {
+    public void setStatut(Etat statut) {
         this.statut = statut;
     }
 
