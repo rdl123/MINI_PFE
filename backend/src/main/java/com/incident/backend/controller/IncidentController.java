@@ -21,6 +21,7 @@ import com.incident.backend.entity.Incident;
 import com.incident.backend.entity.Province;
 import com.incident.backend.entity.Secteur;
 import com.incident.backend.entity.Type;
+import com.incident.backend.entity.Etat;
 import com.incident.backend.service.IncidentService;
 import com.incident.backend.service.ProvinceService;
 import com.incident.backend.service.SecteurService;
@@ -163,7 +164,8 @@ public class IncidentController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=dateFormat.format(date);
         incident.setDate(date);
-        //incident.setStatut(statut);
+        Etat s = new Etat(1,"Déposée");
+        incident.setStatut(s);
          //incidentService.getGeometry();
         incidentService.save(incident);
     }
