@@ -1,0 +1,117 @@
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Les incidents </ion-title>
+
+  </ion-toolbar>
+
+</ion-header>
+
+
+<ion-content >
+  <div class="container" center>
+  <form #f="ngForm" id="myForm" >
+
+    
+    <br>
+    <ion-item lines="none">
+      <ion-label style="color: steelblue;"> Province  : </ion-label>
+      <ion-select placeholder="Choisissez  une Province" id="Province" [value]="selectedProvince"  (ionChange)="do1($event)" >
+        <ion-select-option *ngFor="let val of this.ListProvince" [value]="val.id" >{{ val.province }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+
+    <ion-item lines="none">
+
+      <ion-label  style="color: steelblue;" > Secteur  : </ion-label>
+      <ion-select  placeholder="Choisissez  un secteur" id="secteur" [value]="selectedSecteur1"  (ionChange)="do2($event)" >
+        <ion-select-option *ngFor="let val of this.ListSecteur" [value]="val.id" >{{ val.secteur }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+
+    <ion-item lines="none" *ngIf="idSecteurChoisi!=undefined" >
+      <ion-label style="color: steelblue;"  *ngIf="idSecteurChoisi!=undefined"  > Type Incident  : </ion-label>
+      <ion-select id="TypeIncident" [value]="SelectedType1"    *ngIf="idSecteurChoisi!=undefined"  (ionChange)="do3($event)" >
+        <ion-select-option *ngFor="let val of this.ListType" [value]="val.id" >{{ val.type }}</ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <ion-item lines="none">
+      <ion-label style="color: steelblue;"> Statut  : </ion-label>
+      <ion-select placeholder="Choisissez  un statut" id="Statut" [value]="SelectedStatut1"  (ionChange)="do4($event)" >
+        <ion-select-option [value]=0>declare </ion-select-option>
+        <ion-select-option [value]=1>en cours de traitement </ion-select-option>
+        <ion-select-option [value]=2>Traité  </ion-select-option>
+        <ion-select-option [value]=3>Bloqué </ion-select-option>
+        <ion-select-option [value]=4>redirigé </ion-select-option>
+        <ion-select-option [value]=5>rejeté </ion-select-option>
+        <ion-select-option [value]=5>validé </ion-select-option>
+      </ion-select>
+    </ion-item>
+    <br>
+    <div class="pay_div">
+      <ion-button (click)="FiltreIncident()" ><ion-icon  size="large" name="funnel"></ion-icon>Filter</ion-button>
+      <ion-button  (click)="AnnulerFiltreIncident()"><ion-icon  size="large" name="close-circle-outline"></ion-icon>Annuler</ion-button>
+    </div>
+  </form>
+  <br>
+</div>
+
+<br>
+
+<div *ngFor="let item of ListIncident">
+  <br>
+  <div class="cardcontainer">
+    <div style="display: flex;">
+      <div style="width: 35%;height: auto;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+        </div>
+      
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn">
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+   
+    </div>
+    
+      
+  </div>
+
+</div>
+
+  <!--
+  <table id="customers">
+    <thead>
+    <tr>
+      <th scope="col" > Secteur  </th>
+      <th scope="col"> Type </th>
+      <th scope="col">  Details </th>
+
+
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let item of ListIncident" >
+
+      <td scope="row">{{ item.secteur.secteur}}</td>
+      <td scope="row">{{ item.type.type }}</td>
+
+      <ion-button expand="full" (click)="OpenModal(item)" >  Details </ion-button>
+    </tr>
+    </tbody>
+  </table>
+-->
+
+</ion-content>
