@@ -1,0 +1,128 @@
+
+<ion-header>
+  <ion-toolbar  color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title> Detail des incidents  </ion-title>
+    <ion-button size="small" slot="end"  (click)="CloseModal()"> close </ion-button>
+  </ion-toolbar>
+
+</ion-header>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+</style>
+
+<style>
+  #customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+  #customers tr:hover {background-color: #ddd;}
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:royalblue;
+    color: white;
+  }
+</style>
+
+<ion-content >
+  <div class="container" center>
+    <ion-img style="width: 100%;height:400px;" [src]="ListeChoisi.photo"></ion-img>
+    <br>
+    <div style="display: flex;" >
+        <div style="width: 28%;" >
+            <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Description</ion-label>
+         </div>
+         <div style="width: 2%;" ></div>
+        <div class="decription_text" >
+          {{ ListeChoisi.description }}
+        </div>
+    </div>
+    <hr> 
+
+    <div style="display: flex;" >
+      <div style="width: 28%;" >
+          <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Secteur</ion-label>
+       </div>
+       <div style="width: 2%;" ></div>
+      <div class="decription_text" >
+        {{ ListeChoisi.secteur.secteur }}
+      </div>
+  </div>
+  <hr>
+  <div style="display: flex;" >
+    <div style="width: 28%;" >
+        <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Longitude</ion-label>
+     </div>
+     <div style="width: 2%;" ></div>
+    <div class="decription_text" >
+      {{ ListeChoisi.longitude}}
+    </div>
+</div>
+<hr>
+<div style="display: flex;" >
+  <div style="width: 28%;" >
+      <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Latitude</ion-label>
+   </div>
+   <div style="width: 2%;" ></div>
+  <div class="decription_text" >
+    {{ ListeChoisi.latitude }}
+  </div>
+</div>
+<hr>
+<div style="display: flex;" >
+  <div style="width: 28%;" >
+      <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Statut</ion-label>
+   </div>
+   <div style="width: 2%;" ></div>
+  <div class="decription_text" >
+    {{ ListeChoisi.statut.etat }}
+  </div>
+</div>
+<hr>
+<div style="display: flex;" >
+  <div style="width: 28%;" >
+      <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Province</ion-label>
+   </div>
+   <div style="width: 2%;" ></div>
+  <div class="decription_text" >
+    {{ ListeChoisi.province.province}}
+  </div>
+</div>
+<hr>
+<div style="display: flex;" >
+  <div style="width: 28%;" >
+      <ion-label style="margin-right:0px;margin-left:4%;margin-bottom:0px;margin-top: 20px;font-size: 15px;font-weight: bold;" class="form_label" >Type</ion-label>
+   </div>
+   <div style="width: 2%;" ></div>
+  <div class="decription_text" >
+    {{ ListeChoisi.type.type }}
+  </div>
+</div>
+<br>    
+</div>
+  <br>
+
+
+</ion-content>
+
