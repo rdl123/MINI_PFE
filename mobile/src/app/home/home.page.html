@@ -1,0 +1,20 @@
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-buttons slot="start">
+      <ion-menu-button ></ion-menu-button>
+    </ion-buttons>
+    <ion-title>
+      Acceuil
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+  <img src ="../../assets/image/background.png" alt="logo">
+  <br/><br/>
+  <div id="container">
+    <ion-button class="custom_btn1" (click)="processDeclarer()">DECLARER UN INCIDENT</ion-button> <br/><br/>
+    <ion-button class="custom_btn2" (click)="processListe()">LISTE DES INCIDENTS</ion-button><br/><br/> 
+    <ion-button class="custom_btn3" (click)="processListeOnMap()">LES INCIDENTS SUR CARTE</ion-button>
+  </div>
+</ion-content>

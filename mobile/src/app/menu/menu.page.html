@@ -1,0 +1,25 @@
+<ion-menu contentId="content" type="overlay">
+  <ion-header>
+   
+  </ion-header>
+  <div class="menu-header-bg"></div>
+      <div class="header-content">
+      <img src="../../assets/image/logosanstexte.png" alt="">
+      <ion-label>
+        <h5 style="font-size: x-large;color: azure;font-weight: bold;">TABLIGH</h5>
+      </ion-label></div>
+      <br><br>
+  <ion-content>
+    <ion-list class="menu-items" lines="none">
+    <ion-menu-toggle *ngFor="let m of menus">
+      <ion-item (click)="OnMenuItem(m)">
+        <ion-icon [name]="m.icon" slot="start"></ion-icon>
+        <ion-label> {{m.title}}</ion-label>
+        
+      </ion-item>
+
+    </ion-menu-toggle>
+  </ion-list>
+  </ion-content>
+</ion-menu>
+<ion-router-outlet id="content"> </ion-router-outlet>
