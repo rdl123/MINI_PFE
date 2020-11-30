@@ -1,0 +1,66 @@
+
+
+<h1 style="text-align: center">Statistiques</h1>
+
+<br>
+
+<div class="row">
+  <div class="col">
+    <div class="chart-wrapper">
+      <canvas baseChart
+              [datasets]="barChartData"
+              [labels]="barChartLabels"
+              [options]="barChartOptions"
+              [plugins]="barChartPlugins"
+              [legend]="barChartLegend"
+              [chartType]="barChartType">
+      </canvas>
+    </div>
+  </div>
+  <div class="col">
+    <div class="chart-wrapper">
+      <canvas baseChart
+              [datasets]="ProvChartData"
+              [labels]="ProvChartLabels"
+              [chartType]="ProvbarChartType"
+              [options]="ProvChartOptions"
+              [plugins]="ProvChartPlugins"
+              [legend]="ProvChartLegend">
+      </canvas>
+    </div>
+  </div>
+</div>
+  <div class="row">
+    <div class="col">
+      <div class="chart-wrapper">
+        <canvas baseChart
+                [datasets]="StatutChartData"
+                [labels]="StatutChartLabels"
+                [chartType]="StatutbarChartType"
+                [options]="StatutChartOptions"
+                [plugins]="StatutChartPlugins"
+                [legend]="StatutChartLegend">
+        </canvas>
+      </div>
+    </div>
+    <div class="col">
+      <div class="chart-wrapper">
+        <canvas baseChart
+                [datasets]="TypeChartData"
+                [labels]="TypeChartLabels"
+                [chartType]="TypebarChartType"
+                [options]="TypeChartOptions"
+                [plugins]="TypeChartPlugins"
+                [legend]="TypeChartLegend">
+        </canvas>
+      </div>
+    </div>
+  </div>
+
+
+
+
+
+
+
+
