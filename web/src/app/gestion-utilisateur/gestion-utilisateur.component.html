@@ -1,0 +1,146 @@
+<div style="padding-left: 210px;">
+<br>
+  <button class="monBoutton"
+   type="submit" style="display: block;margin : auto;" (click)="openModal(template)">Ajouter Un Professionnel </button>
+</div>
+<p></p>
+
+<ng-template #template>
+  <div class="modal-header">
+    <button type="button" class="close pull-right" area-label="'close" (click)="hide()">
+      <span area-hidden="true">&times;</span>
+    </button>
+    
+  </div>
+  <p></p>
+  <div class="modal-body">
+    <form [formGroup]="formData">
+      <label style="text-align: center" >Username :</label>
+      <input type="text" required id="username"  class="form-control" formControlName="username"
+             placeholder="username" [(ngModel)]="user.username" (change)="checkUsername($event)" >
+      <label style="text-align: center;color: red" >{{errusername}}</label>
+      <p></p>
+      <label style="text-align: center">Password :</label>
+      <input type="password" required id="password" class="form-control"  formControlName="password" placeholder="password"
+             [(ngModel)]="user.password" (change)="checkPassword($event)">
+      <label style="text-align: center;color: red" >{{errpassword}}</label>
+      <p></p>
+      <label style="text-align: center">Full Name  :</label>
+      <input type="text"  required class="form-control"  formControlName="fullname" placeholder="fullname"
+             [(ngModel)]="user.fullname" (change)="checkFullname($event)">
+      <label style="text-align: center;color: red" >{{errfullname}}</label>
+      <p></p>
+      <label style="text-align: center"> organisme :</label>
+      <input type="text"  id="organisme" class="form-control"  formControlName="organisme" placeholder="organisme" [(ngModel)]="user.organisme">
+
+      <p></p>
+      <label style="text-align: center"> email :</label>
+      <input type="text"  id="email" class="form-control"  formControlName="email" placeholder="email" [(ngModel)]="user.email">
+
+      <p></p>
+      <label style="text-align: center"> telephone :</label>
+      <input type="text"  id="telephone" class="form-control"  formControlName="telephone" placeholder="telephone" [(ngModel)]="user.telephone">
+
+      <p></p>
+      <label style="margin:1px ;">Secteur :</label>
+      <select   name="Secteur" (change)="do2($event)" >
+        <option  [value]=null  >Selectionner un secteur </option>
+        <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
+
+      </select>
+      <p></p>
+      <button type="submit"   class="btn btn-default" (click)="add()"> Ajouter </button>
+
+
+    </form>
+
+  </div>
+</ng-template>
+<ng-template #template1>
+  <div class="modal-header">
+    <button type="button" class="close pull-right" area-label="'close" (click)="modalRef.hide()">
+      <span area-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body">
+    <form [formGroup]="formData">
+      <label style="text-align: center" >Username :</label>
+      <input type="text" required id="username1"  class="form-control" formControlName="username"
+             placeholder="username" [(ngModel)]="item.username" (change)="checkUsername1($event)" >
+      <label style="text-align: center;color: red" >{{errusername}}</label>
+      <p></p>
+      <label style="text-align: center">Password :</label>
+      <input type="password" required id="password1" class="form-control"  formControlName="password" placeholder="password"
+             [(ngModel)]="item.password" >
+      <label style="text-align: center;color: red" >{{errpassword}}</label>
+      <p></p>
+      <label style="text-align: center">Full Name  :</label>
+      <input type="text"  required class="form-control"  formControlName="fullname" placeholder="fullname"
+             [(ngModel)]="item.fullname" >
+      <label style="text-align: center;color: red" >{{errfullname}}</label>
+      <p></p>
+      <label style="text-align: center"> organisme :</label>
+      <input type="text"  id="organisme1" class="form-control"  formControlName="organisme" placeholder="organisme" [(ngModel)]="item.organisme">
+
+      <p></p>
+      <label style="text-align: center"> email :</label>
+      <input type="text"  id="email1" class="form-control"  formControlName="email" placeholder="email" [(ngModel)]="item.email">
+
+      <p></p>
+      <label style="text-align: center"> telephone :</label>
+      <input type="text"  id="telephone1" class="form-control"  formControlName="telephone" placeholder="telephone" [(ngModel)]="item.telephone">
+
+      <p></p>
+      <label style="margin:1px ;">Secteur : </label>
+      <select   name="Secteur"   (change)="do2($event)"   >
+        <option  [value]=null  > Selectionner un secteur </option>
+        <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
+
+      </select>
+      <p></p>
+      <button type="submit"   class="btn btn-default" (click)="update()"> Valider  </button>
+
+
+    </form>
+
+  </div>
+
+</ng-template>
+
+<div class="container">
+  <div class="panel panel-primary">
+    <div class="panel-heading">
+      Liste des Professionnels
+    </div>
+    <div class="panel-body">
+
+      <table class="table table-condensed">
+        <thead>
+        <tr>
+          <th scope="col" > Nom  </th>
+          <th scope="col"> Organisme </th>
+          <th scope="col" > E-mail </th>
+          <th scope="col" > Telephone  </th>
+          <th scope="col" > Secteur </th>
+
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let item of listProf">
+          <td scope="row">{{ item.fullname }}</td>
+          <td scope="row">{{ item.organisme }}</td>
+          <td scope="row">{{ item.email }}</td>
+          <td scope="row">{{ item.telephone }}</td>
+          <td scope="row">{{ item.secteurUser.secteur }}</td>
+          <button type="submit" class="btn btn-success" (click)="openModal1(template1,item)">editer</button>
+
+
+        </tr>
+        </tbody>
+      </table>
+    </div>
+
+
+  </div>
+</div>
