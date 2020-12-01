@@ -52,11 +52,12 @@ listProf = [];
       data => {
         this.listUsers = data;
         for (let i = 0; i < this.listUsers.length; i++) {
-          if (this.listUsers[i].role == 'professionnel') {
+          if (this.listUsers[i].role.role == 'professionnel') {
             this.listProf.push(this.listUsers[i]);
           }
         }
         console.log(this.listUsers);
+        console.log(this.listUsers[1].fullname);
       }
     );
   }
@@ -84,7 +85,7 @@ listProf = [];
   checkUsername(evt) {
 
     for (let i = 0; i < this.listUsers.length; i++) {
-      console.log('azza');
+      console.log('ali');
       if (this.user.username == this.listUsers[i].username) {
 
         this.errusername = 'ce champ existe deja ';
@@ -99,7 +100,7 @@ listProf = [];
     console.log('this.user', this.listUsers);
     console.log('this.item', this.item);
     for (let i = 0; i < this.listUsers.length; i++) {
-      console.log('azza');
+      console.log('ali');
       if (this.item.username == this.listUsers[i].username && this.item.id != this.listUsers[i].id) {
 
         this.errusername = 'ce champ existe deja ';

@@ -32,7 +32,7 @@ statut: any;
         }
       );*/
       this.loginService.currentUser.subscribe((newUser) => {
-        this.currentRole = newUser ? newUser.role : null;
+        this.currentRole = newUser ? newUser.role.role : null;
         console.log(this.currentRole);
 
       });
