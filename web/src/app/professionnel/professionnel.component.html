@@ -1,3 +1,9 @@
+<div class="row body">
+
+  <app-sidebar> </app-sidebar>
+</div>
+<div style="padding-left: 210px; padding-top: 100px;">
+
 <ng-template #template>
   <div style="padding-left: 210px;">
   <div class="modal-header">
@@ -50,7 +56,7 @@
           </td>
 
           <td scope="row">{{ item.date }}</td>
-          <td scope="row">{{ item.statut }}</td>
+          <td scope="row">{{ item.statut.etat }}</td>
           <td scope="row">{{ item.secteur.secteur }}</td>
           <td scope="row">{{ item.province.province }}</td>
           <td scope="row">{{ item.type.type }}</td>
@@ -62,6 +68,6 @@
       </table>
       </div>
     </div>
-
+  </div>
 
         
