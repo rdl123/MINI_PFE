@@ -8,6 +8,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Secteur} from '../entities/Secteur';
 import {data} from '../../assets/data/incidents';
 import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
+import { Role } from '../entities/Role';
 
 @Component({
   selector: 'app-gestion-utilisateur',
@@ -44,7 +45,7 @@ listProf = [];
     this.user = new User();
     this.user.secteurUser = new Secteur();
     this.getSecteur();
-    this.i = 12;
+    this.i = 0;
   }
 
   ngOnInit() {
@@ -110,9 +111,11 @@ listProf = [];
     }
   }
   add() {
-    this.user.role.role = 'professionnel';
-    this.i ++;
-    this.user.id = this.i;
+    //for (let i = 0; i < this.listUsers.length; i++);
+    this.user.id = this.listUsers.length+1;
+    this.user.role=new Role();
+    this.user.role.id = 2;
+    this.user.role.role =  'professionnel';
     this.userService.addUser(this.user).subscribe(
       data => {
              console.log(data);
@@ -138,7 +141,9 @@ listProf = [];
 
   }
   update() {
-    this.user.role.role = 'professionnel';
+    this.user.role=new Role();
+    this.user.role.id = 2;
+    this.user.role.role =  'professionnel';
     console.log(this.item);
 
     this.userService.updateuser(this.item).subscribe(

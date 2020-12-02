@@ -3,6 +3,7 @@ import { IncidentService } from '../services/Incident.service';
 import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {UserService} from '../services/UserService';
 import {LIST_STATUTS} from '../Util/constantes';
+import { Statut } from '../entities/Statut';
 class test {
   id: number;
   name: String;
@@ -121,8 +122,10 @@ export class AdministrationComponent implements OnInit {
   ngOnInit() {
   }
   submit() {
-      if (this.StatutChoisi == this.statut[0]) {
-        this.IncidentChoisi.statut = this.StatutChoisi;
+    if (this.StatutChoisi == this.statut[0]) {
+        this.IncidentChoisi.statut = new Statut();
+        this.IncidentChoisi.statut.id = 3;
+        this.IncidentChoisi.statut.etat = this.statut[0];
         this.IncidentChoisi.user = this.userChoisi;
          this.incidentService.updateIncident(this.IncidentChoisi).subscribe(
            data=>{
@@ -132,7 +135,9 @@ export class AdministrationComponent implements OnInit {
          )
       }
       else{
-        this.IncidentChoisi.statut = this.StatutChoisi;
+        this.IncidentChoisi.statut = new Statut();
+        this.IncidentChoisi.statut.id = 5;
+        this.IncidentChoisi.statut.etat = this.statut[1];
         this.IncidentChoisi.motif = this.motifChoisi;
         this.incidentService.updateIncident(this.IncidentChoisi).subscribe(
           data=>{
