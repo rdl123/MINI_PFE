@@ -86,6 +86,7 @@ statut: any;
   submit() {
     console.log(this.stat);
     this.item.statut = new Statut();
+    this.modalRef.hide();
     
     if(this.stat =="validé")
             this.item.statut.id = 3;

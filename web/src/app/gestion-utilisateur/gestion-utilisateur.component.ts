@@ -6,9 +6,11 @@ import {User} from '../entities/User';
 import {SecteurService} from '../services/Secteur.service';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Secteur} from '../entities/Secteur';
+import { Router } from '@angular/router';
 import {data} from '../../assets/data/incidents';
 import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
 import { Role } from '../entities/Role';
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-gestion-utilisateur',
@@ -30,6 +32,8 @@ listProf = [];
   errpassword: string;
   i: number;
   selectedSecteur2: any;
+  totalRecords: String;
+  page : Number = 1;
   formData: FormGroup = this.formBuilder.group({
   username: [null],
   fullname: [null],
@@ -40,7 +44,7 @@ listProf = [];
   secteurUser : [null]
   });
   constructor(private userService: UserService, private  http: HttpClient,
-              private modalService: BsModalService,
+              private modalService: BsModalService, private router: Router,
               private Secteurservice: SecteurService, private formBuilder: FormBuilder) {
     this.user = new User();
     this.user.secteurUser = new Secteur();
@@ -116,6 +120,8 @@ listProf = [];
     this.user.role=new Role();
     this.user.role.id = 2;
     this.user.role.role =  'professionnel';
+    this.modalRef.hide();
+    this.router.navigateByUrl('/gestion');
     this.userService.addUser(this.user).subscribe(
       data => {
              console.log(data);
@@ -144,6 +150,7 @@ listProf = [];
     this.user.role=new Role();
     this.user.role.id = 2;
     this.user.role.role =  'professionnel';
+    this.modalRef.hide();
     console.log(this.item);
 
     this.userService.updateuser(this.item).subscribe(

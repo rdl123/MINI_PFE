@@ -205,7 +205,7 @@ export class IncidentComponent implements OnInit {
 
   }
 
-  isShow = false;
+  isShow = false; 
  
   toggleDisplay() {
     this.isShow = !this.isShow;}

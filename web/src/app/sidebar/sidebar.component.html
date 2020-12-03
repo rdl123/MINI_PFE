@@ -3,7 +3,7 @@
     <!-- sidebar menu start-->
     <ul class="sidebar-menu" id="nav-accordion">
       <br>
-      <p class="centered"><a href="profile.html"><img src="../../assets/Images/logosanstexte.png" class="img-circle" width="80"></a></p>
+      <p class="centered"><a href="/acceuil"><img src="../../assets/Images/logosanstexte.png" class="img-circle" width="80"></a></p>
       <h5 class="centered">TABLIGH</h5>
       <br>
       <li class="mt active" id=1 >
@@ -34,19 +34,19 @@
       <li class="sub-menu">
         <a data-toggle="tab">
           
-          <span style="font-size :18px">Consultation des incidents</span>
+          <span style="font-size :18px"  (click) = toggleDisplay() >Consultation des incidents</span>
           </a>
       </li>
       <li class="sub-menu">
         <a data-toggle="tab" routerLink="/incident">
           
-          <span style="font-size :18px">Table</span>
+          <span [hidden] = "!isShow" style="font-size :18px">Table</span>
           </a>
       </li>
       <li class="sub-menu">
         <a data-toggle="tab" routerLink="/map">
           
-          <span style="font-size :18px">Map</span>
+          <span [hidden] = "!isShow" style="font-size :18px" >Map</span>
           </a>
       </li>
       <li class="sub-menu">
