@@ -127,6 +127,7 @@ export class AdministrationComponent implements OnInit {
         this.IncidentChoisi.statut.id = 3;
         this.IncidentChoisi.statut.etat = this.statut[0];
         this.IncidentChoisi.user = this.userChoisi;
+        this.modalRef.hide();
          this.incidentService.updateIncident(this.IncidentChoisi).subscribe(
            data=>{
              console.log(data);
@@ -139,6 +140,7 @@ export class AdministrationComponent implements OnInit {
         this.IncidentChoisi.statut.id = 5;
         this.IncidentChoisi.statut.etat = this.statut[1];
         this.IncidentChoisi.motif = this.motifChoisi;
+        this.modalRef.hide();
         this.incidentService.updateIncident(this.IncidentChoisi).subscribe(
           data=>{
             console.log(data);
@@ -149,6 +151,7 @@ export class AdministrationComponent implements OnInit {
 
       }
     this.StatutChoisi=null;
+    this.modalRef.hide();
   }
 
 }

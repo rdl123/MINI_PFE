@@ -122,7 +122,7 @@
     </div>
     <div class="panel-body">
 
-      <table class="table table-condensed">
+      <table class="table table-condensed table-hover">
         <thead>
         <tr>
           <th scope="col" > Nom  </th>
@@ -134,7 +134,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr *ngFor="let item of listProf">
+        <tr *ngFor = "let item of listProf">
           <td scope="row">{{ item.fullname }}</td>
           <td scope="row">{{ item.organisme }}</td>
           <td scope="row">{{ item.email }}</td>
@@ -146,6 +146,9 @@
         </tr>
         </tbody>
       </table>
+      <!-- <div>
+        <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+      </div> -->
     </div>
 
 
