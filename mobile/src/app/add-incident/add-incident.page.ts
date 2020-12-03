@@ -14,7 +14,8 @@ import {AlertController} from '@ionic/angular';
 import { Device } from '@ionic-native/device/ngx';
 import {ProvinceService} from '../services/province.service';
 import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
-
+import { Uid } from '@ionic-native/uid/ngx';
+import { AndroidPermissions } from '@ionic-native/android-permissions/ngx';
 @Component({
   selector: 'app-add-incident',
   templateUrl: './add-incident.page.html',
@@ -29,7 +30,7 @@ export class AddIncidentPage implements OnInit {
   inci: Incident;
 
     title = 'ImageUploaderFrontEnd';
-
+    IMECODE :any;
     public selectedFile;
     public event1;
     imgURL: any;
@@ -45,7 +46,9 @@ export class AddIncidentPage implements OnInit {
     latitude: any;
     description: any;
     photo: any;
-  constructor(private http: HttpClient,
+  constructor( private uid: Uid,
+                private androidPermissions: AndroidPermissions,
+              private http: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable
               private Typeservice: TypeService, private Geolocation: Geolocation, private  IncidentService: IncidentService,
@@ -60,10 +63,42 @@ export class AddIncidentPage implements OnInit {
     this.Incident.province = new Province();
     this.inci = new Incident();
     this.getSecteur();
-    this.getProvince();
+    this.IMECODE = this.getID_UID("IMEI")
+    alert(this.IMECODE);
+    //this.getProvince();
   }
 
   ngOnInit() {}
+  getPermission(){
+    this.androidPermissions.checkPermission(
+      this.androidPermissions.PERMISSION.READ_PHONE_STATE
+    ).then(res => {
+      if(res.hasPermission){
+        
+      }else{
+        this.androidPermissions.requestPermission(this.androidPermissions.PERMISSION.READ_PHONE_STATE).then(res => {
+          alert("Persmission Granted Please Restart App!");
+        }).catch(error => {
+          alert("Error! "+error);
+        });
+      }
+    }).catch(error => {
+      alert("Error! "+error);
+    });
+  }
+  getID_UID(type){
+    if(type == "IMEI"){
+      return this.uid.IMEI;
+    }else if(type == "ICCID"){
+      return this.uid.ICCID;
+    }else if(type == "IMSI"){
+      return this.uid.IMSI;
+    }else if(type == "MAC"){
+      return this.uid.MAC;
+    }else if(type == "UUID"){
+      return this.uid.UUID;
+    }
+  }
   getSecteur() {
     this.Secteurservice.findAllSecteur().subscribe(
         data => {this.ListSecteur = data;
@@ -79,9 +114,10 @@ export class AddIncidentPage implements OnInit {
     );
   }
   getProvince() {
-      this.provinceService.findAll().subscribe(
+      this.provinceService.RetrieveProvince(this.Incident.longitude,this.Incident.latitude).subscribe(
           data => {
-              this.listProvince = data;
+              this.Incident.province=<any>data
+              
           }
       );
   }
@@ -124,11 +160,18 @@ export class AddIncidentPage implements OnInit {
     this.Geolocation.getCurrentPosition().then(resp => {
       this.Incident.latitude = resp.coords.latitude;
       this.Incident.longitude = resp.coords.longitude;
+      this.getProvince();
 
     });
   }
+
+  
   public async  TakePicture() {
+
     this.location();
+    //get province name/id
+    
+    
     const option1: CameraOptions = {
       quality: 50,
       destinationType: this.camera.DestinationType.FILE_URI,

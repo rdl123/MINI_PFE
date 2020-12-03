@@ -73,7 +73,14 @@
         <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
           <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
         </div>
-      
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          
+        </div>
         <div style="font-size: small;margin-right: 1%; ">
           {{item.description.substring(0,60)}}...
         </div>
@@ -90,28 +97,5 @@
   </div>
 
 </div>
-
-  <!--
-  <table id="customers">
-    <thead>
-    <tr>
-      <th scope="col" > Secteur  </th>
-      <th scope="col"> Type </th>
-      <th scope="col">  Details </th>
-
-
-    </tr>
-    </thead>
-    <tbody>
-    <tr *ngFor="let item of ListIncident" >
-
-      <td scope="row">{{ item.secteur.secteur}}</td>
-      <td scope="row">{{ item.type.type }}</td>
-
-      <ion-button expand="full" (click)="OpenModal(item)" >  Details </ion-button>
-    </tr>
-    </tbody>
-  </table>
--->
 
 </ion-content>
