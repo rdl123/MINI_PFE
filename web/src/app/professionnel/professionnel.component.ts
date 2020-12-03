@@ -4,6 +4,7 @@ import {BsModalRef, BsModalService} from 'ngx-bootstrap';
 import {LIST_STATUTS} from '../Util/constantes';
 import {LoginService} from '../services/Login.service';
 import {User} from '../entities/User';
+import { Statut } from '../entities/Statut';
 @Component({
   selector: 'app-professionnel',
   templateUrl: './professionnel.component.html',
@@ -83,7 +84,26 @@ statut: any;
   }
 
   submit() {
-    this.item.statut = this.stat;
+    console.log(this.stat);
+    this.item.statut = new Statut();
+    
+    if(this.stat =="validé")
+            this.item.statut.id = 3;
+        
+    else if(this.stat =="en cours de traitement")
+            this.item.statut.id = 2;
+
+    else if(this.stat =="Traité")
+            this.item.statut.id = 7;
+
+    else if(this.stat =="Bloqué")
+            this.item.statut.id = 1;
+
+    else if(this.stat =="redirigé")
+            this.item.statut.id = 4;
+
+    this.item.statut.etat = this.stat;
+
     this.incidentService.updateIncident(this.item).subscribe(
 
     );

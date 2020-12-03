@@ -5,7 +5,7 @@
 <div style="padding-left: 210px; padding-top: 100px;">
 
 <ng-template #template>
-  <div style="padding-left: 210px;">
+  <div>
   <div class="modal-header">
     <button type="button" class="close pull-right" area-label="'close" (click)="modalRef.hide()">
       <span area-hidden="true">&times;</span>
@@ -14,12 +14,12 @@
   </div>
   <div class="modal-body">
     <label>statut:</label>
-    <select   name="statut"  (change)="changeStatut($event)">
+    <select   name="statut"  (change)="changeStatut($event)" class="form-control">
       <option  [value]=null  >Selectionner un statut </option>
       <option  *ngFor="let s of list_statut" >{{s}}</option>
     </select>
     <br>
-    <button type="submit" (click)="submit()"class="btn btn-success" >valider</button>
+    <button type="submit" (click)="submit()"class="monBoutton3" >valider</button>
 
   </div>
   </div>
@@ -62,7 +62,7 @@
           <td scope="row">{{ item.type.type }}</td>
           <td scope="row">{{ item.description }}</td>
 
-          <button type="submit" class="edit" (click)="openModal(template,item)">Editer</button>
+          <button type="submit" class="edit" (click)="openModal(template,item)" class="monBoutton1">Editer</button>
         </tr>
         </tbody>
       </table>

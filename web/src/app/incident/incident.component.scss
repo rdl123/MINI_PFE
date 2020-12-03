@@ -10,7 +10,7 @@
 #map {
     position: fixed;
     right: 5.5%;
-    height: 65%;
+    height: 45%;
     width: 75%;
     margin-bottom: 31%;
     padding: 8%;
@@ -73,7 +73,19 @@
     position: relative;
     text-decoration: none;
     }
-  
+    .monBoutton2 {
+      background-color: #3e4a49;
+    Color: white;
+    position: relative;
+    /* padding-left: 11%; */
+    font-weight: bold;
+    padding: 10px 39px;
+    border-radius: 3px;
+    left: 4%;
+    cursor: pointer;
+    box-shadow: 0 8px 16px 0 grey;
+    text-decoration: none;
+      }
   
   //LISTE DES INCIDENTS ..................................
   .countainer-table{

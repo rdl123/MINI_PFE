@@ -49,7 +49,7 @@
 
       <p></p>
       <label style="margin:1px ;">Secteur :</label>
-      <select   name="Secteur" (change)="do2($event)" >
+      <select   name="Secteur" (change)="do2($event)" class="form-control">
         <option  [value]=null  >Selectionner un secteur </option>
         <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
 
@@ -99,7 +99,7 @@
 
       <p></p>
       <label style="margin:1px ;">Secteur : </label>
-      <select   name="Secteur"   (change)="do2($event)"   >
+      <select   name="Secteur"   (change)="do2($event)"  class="form-control" >
         <option  [value]=null  > Selectionner un secteur </option>
         <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
 
@@ -117,7 +117,8 @@
 <div class="container">
   <div class="panel panel-primary">
     <div class="panel-heading">
-      Liste des Professionnels
+      <h5>Liste des Professionnels</h5>
+      
     </div>
     <div class="panel-body">
 
@@ -139,7 +140,7 @@
           <td scope="row">{{ item.email }}</td>
           <td scope="row">{{ item.telephone }}</td>
           <td scope="row">{{ item.secteurUser.secteur }}</td>
-          <button type="submit" class="btn btn-success" (click)="openModal1(template1,item)">editer</button>
+          <button type="submit" class="monBoutton1" (click)="openModal1(template1,item)">editer</button>
 
 
         </tr>

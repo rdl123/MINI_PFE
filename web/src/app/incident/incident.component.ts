@@ -44,12 +44,15 @@ export class IncidentComponent implements OnInit {
   selectedSecteur: any;
   selectedStatut: any;
   selectedSecteur2:any;
+  div1:boolean=true;
 
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               private Typeservice: TypeService,
               private provinceService: ProvinceService,
               private incidentService: IncidentService) {
+
+    
 
     this.Incident = new Incident();
     this.CustumFilter = new CustomFilter();
@@ -60,14 +63,9 @@ export class IncidentComponent implements OnInit {
     this.getSecteur();
     this.getIncident();
 
-    /*this.selectedProvinceId = null;
-    this.selectedType = null;
-    this.selectedSecteur = null;
-    this.selectedStatut = null;*/
   }
 
   ngOnInit() {
-    // this.selectedStatut=null;
     const lat = 31.1728205;
     const lng = -7.3362482;
     const zoom = 6;
@@ -185,15 +183,7 @@ export class IncidentComponent implements OnInit {
   }
   marker(ListIncident) {
     for (let i = 0; i < ListIncident.length; i++) {
-     /* var greenIcon = L.icon({
-        iconUrl: ListIncident[i].photo,
-
-        iconSize:     [30, 30], // size of the icon
-        iconAnchor:   [22, 94], // point of the icon which will correspond to marker's location
-        shadowAnchor: [4, 62],  // the same for the shadow
-        popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
-      });*/
-      // console.log(ListIncident[i].longitude);
+      
       if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté') {
         const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude] ).addTo(this.map);
         marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
@@ -214,25 +204,23 @@ export class IncidentComponent implements OnInit {
     }
 
   }
+
+  isShow = false;
+ 
+  toggleDisplay() {
+    this.isShow = !this.isShow;}
+  
   getIncident() {
     this.incidentService.findAllIncident().subscribe(
       data => {
         this.data = data;
         this.Incident = this.data;
-       // console.log( this.Incident);
+        console.log( this.Incident);
         this.ListIncident = this.data;
         this.listIncident2 = this.data;
        // console.log('getIncident', this.ListIncident);
         this.marker(this.ListIncident);
-        //  console.log('avant', this.ListIncident);
-        /*for (let i = 0; i < this.listIncident2.length; i++) {
-          if (this.listIncident2[i].statut == 'rejeté' || this.listIncident2[i].statut == 'declare' ) {
-            console.log(i, this.ListIncident[i].statut);
-            this.ListIncident = this.ListIncident.filter(obj => obj != this.ListIncident[i]);
-            console.log('apres', this.ListIncident);
-
-          }
-        }*/
+       
 
       }
     );
@@ -463,6 +451,7 @@ export class IncidentComponent implements OnInit {
 
 
 }
+
 
 
 

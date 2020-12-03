@@ -31,7 +31,10 @@ sect_statistique: any;
     this.http.get('http://localhost:9090/Incident/secteur/Statistique').subscribe(
       data => {
         this.sect_statistique = data;
+
+        console.log(this.sect_statistique.length);
         for (let i = 0; i < this.sect_statistique.length; i++) {
+          console.log(this.sect_statistique[i][0]);
           this.Labels.push(this.sect_statistique[i][0]);
           this.Values.push(this.sect_statistique[i][1]);
 
@@ -65,6 +68,7 @@ sect_statistique: any;
       data => {
         this.type_statistique = data;
         for (let i = 0; i < this.type_statistique.length; i++) {
+          console.log(this.type_statistique[i][0]);
 
           this.LabelsType.push(this.type_statistique[i][0]);
           this.ValuesType.push(this.type_statistique[i][1]);
@@ -92,32 +96,61 @@ sect_statistique: any;
 // secteur
   barChartOptions: ChartOptions = {
     responsive: true,
+    
+    scales: {
+      yAxes: [{
+          ticks: {
+              suggestedMin: 0,
+              suggestedMax: this.Labels.length +4,
+          }
+      }]
+  }
   };
   barChartLabels: Label[] = this.Labels;
   barChartType: ChartType = 'bar';
   barChartLegend = true;
   barChartPlugins = [];
+  
 
   barChartData: ChartDataSets[] = [
-    { data: this.Values, label: 'Nombre d incidents par secteur' }
+    { data: this.Values, label: 'Nombre d incidents par secteur',
+     backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], }
   ];
 
 // province
   ProvChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+          ticks: {
+              suggestedMin: 0,
+              suggestedMax: this.Labels.length +4,
+          }
+      }]
+  }
   };
   ProvChartLabels: Label[] = this.LabelsProv;
   ProvbarChartType: ChartType = 'bar';
   ProvChartLegend = true;
   ProvChartPlugins = [];
+  //color = [red];
 
   ProvChartData: ChartDataSets[] = [
     {
-      data: this.ValuesProv, label: 'Nombre d incidents par province' }
+      data: this.ValuesProv, label: 'Nombre d incidents par province',
+      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], }
   ];
 // statut
   StatutChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+          ticks: {
+              suggestedMin: 0,
+              suggestedMax: this.Labels.length +4,
+          }
+      }]
+  }
   };
   StatutChartLabels: Label[] = this.LabelsStatut;
   StatutbarChartType: ChartType = 'bar';
@@ -126,11 +159,20 @@ sect_statistique: any;
 
   StatutChartData: ChartDataSets[] = [
     {
-      data: this.ValuesStatut, label: 'Nombre d incidents par statut' }
+      data: this.ValuesStatut, label: 'Nombre d incidents par statut',
+      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], }
   ];
   // type
   TypeChartOptions: ChartOptions = {
     responsive: true,
+    scales: {
+      yAxes: [{
+          ticks: {
+              suggestedMin: 0,
+              suggestedMax: this.Labels.length +4,
+          }
+      }]
+  }
   };
   TypeChartLabels: Label[] = this.LabelsType;
   TypebarChartType: ChartType = 'bar';
@@ -139,7 +181,8 @@ sect_statistique: any;
 
   TypeChartData: ChartDataSets[] = [
     {
-      data: this.ValuesType, label: 'Nombre d incidents par type' }
+      data: this.ValuesType, label: 'Nombre d incidents par type',
+      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], }
   ];
   ngOnInit() {
 

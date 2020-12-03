@@ -17,20 +17,20 @@
   <div class="modal-body">
 
     <label>statut:</label>
-    <select   name="statut"  (change)="getStatut($event)">
+    <select   name="statut"  (change)="getStatut($event)" class="form-control">
       <option  [value]=null  >Selectionner un statut </option>
       <option  *ngFor="let s of statut" >{{s}}</option>
     </select>
     <br>
     <label *ngIf="StatutChoisi === 'validé'"> Professionnel:</label>
-    <select   name="user"   *ngIf="StatutChoisi === 'validé'" (change)="do2($event)" >
+    <select   name="user"   *ngIf="StatutChoisi === 'validé'" (change)="do2($event)" class="form-control">
       <option  [value]=null  >Selectionner un  Professionnel </option>
       <option  *ngFor="let s of prof"  value={{s.id}}>{{s.name}}</option>
     </select>
     <br>
     <input *ngIf="StatutChoisi === 'rejeté'" type="text"  id="Motif" class="form-control"  formControlName="Motif" placeholder="Motif" (change)="motif($event)" >
     <br>
-    <button type="submit" (click)="submit()"class="btn btn-success" >valider</button>
+    <button type="submit" (click)="submit()"class="monBoutton" >valider</button>
     <br>
     <br>
     <br>
