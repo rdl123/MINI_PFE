@@ -20,11 +20,13 @@ L.Icon.Default.mergeOptions({
 export class MyIncidentsMapPage implements OnInit {
     map: Map;
     ListIncident: any;
-   data: any;
+    data: any;
+    
     constructor(
         private incidentService: IncidentService,
     ) {
 
+        
     }
     ionViewDidEnter() { this.leafletMap(); }
     // todo: update list incident in this composante using this function to update its value in the incident service
@@ -53,15 +55,48 @@ export class MyIncidentsMapPage implements OnInit {
     }
 
    leafletMap() {
+    var redIcon = L.icon({
+        iconUrl: '../../assets/images/red_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
+    var blueIcon = L.icon({
+        iconUrl: '../../assets/images/blue_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
+    var greenIcon = L.icon({
+        iconUrl: '../../assets/images/green_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
+    var yellowIcon = L.icon({
+        iconUrl: '../../assets/images/yellow_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
+    var orangeIcon = L.icon({
+        iconUrl: '../../assets/images/orange_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
         // In setView add latLng and zoom
        this.map = new Map('mapId').setView([ 31.1728205, -7.3362482], 5);
        tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+           //
            attribution: 'edupala.com © ionic LeafLet',
        }).addTo(this.map);
        for (let i = 0; i < this.ListIncident.length; i++) {
            console.log(this.ListIncident[i].longitude);
            // .circle([this.ListPoi[i].latitude, this.ListPoi[i].longitude], {radius: 500}).addTo(this.map);
-           const marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude]).addTo(this.map);
+           var marker;
+           console.log("statut est  : " + this.ListIncident[i].statut.id );
+           if(this.ListIncident[i].statut.id==1){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==2){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==3){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greenIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==4){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==5){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);}
+           
           // marker.bindPopup('longitude:' + this.ListIncident[i].longitude + '</br> latitude:' + this.ListIncident[i].latitude);
            marker.bindPopup('<b>Secteur:</b>' + this.ListIncident[i].secteur.secteur +
                '</br> <b>Type: </b>' + this.ListIncident[i].type.type +

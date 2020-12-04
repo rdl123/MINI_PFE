@@ -14,9 +14,10 @@ import {Geolocation} from '@ionic-native/geolocation/ngx';
 import {IncidentService} from './services/Incident.service';
 import {ProvinceService} from './services/province.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
-import { UniqueDeviceID } from '@ionic-native/unique-device-id/ngx';
 import {ModalpopupPageModule} from './modalpopup/modalpopup.module';
 import {Device} from '@ionic-native/device/ngx';
+
+//import { HereMapComponent } from "../app/here-map/here-map.component";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,7 +25,7 @@ import {Device} from '@ionic-native/device/ngx';
   providers: [
     SecteurService, TypeService , Geolocation, IncidentService, ProvinceService,
     StatusBar, Camera, Device,
-      SplashScreen, UniqueDeviceID,
+      SplashScreen,
     { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
   ],
   bootstrap: [AppComponent]

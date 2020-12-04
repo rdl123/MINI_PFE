@@ -198,6 +198,7 @@ export class MyIncidentsPage implements OnInit {
             this.incidentService.findByProvince(this.idProvinceChoisi).subscribe(
                 data => {
                     this.data = data;
+                    console.log(data);
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
 
