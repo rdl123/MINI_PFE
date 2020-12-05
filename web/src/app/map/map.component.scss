@@ -1,0 +1,129 @@
+.form-control {
+  width:auto;
+  display:inline-block;
+  width: 13.5%;
+  }
+  .label{
+    color: #000000;
+    font-size: medium;
+  }
+#map {
+    position: fixed;
+    right: 5.5%;
+    height: 65%;
+    width: 75%;
+    margin-bottom: 31%;
+    padding: 8%;
+    border-width: 3px;
+    border-style: outset;
+    border-color: gray;
+    border-radius: 10px;
+  
+  }
+  #container{
+  float: left;
+    left:0px;
+  height: 100%;
+    width:70%;
+  }
+  .form{
+    left: 22%;
+    border-width: 3px;
+    border-style: outset;
+    border-radius: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #ffffff;
+    box-shadow: 0px 1px 10px rgba(98, 140, 255, 0.5);
+    width: 86%;
+    bottom: -1%;
+    padding: 0%;
+    margin-bottom: 1%;
+  }
+  
+  .image{
+  width: 100px;
+  height: 80px;
+  }
+  .image1{
+  width: 0px;
+  height: 0px;
+  }
+  
+  .monBoutton {
+  background-color:#20B2AA;
+  Color:white;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 3px;
+  margin-left: 7%;
+  margin-right: auto;
+  cursor: pointer; 
+  box-shadow: 0 8px 16px 0 grey;
+  text-decoration: none;
+  }
+  .monBoutton1 {
+    background-color:#20B2AA;
+    Color:white;
+    font-weight: bold;
+    padding: 10px 40px;
+    border-radius: 3px;
+    cursor: pointer; 
+    left: 1%;
+    position: relative;
+    text-decoration: none;
+    }
+  
+  
+  //LISTE DES INCIDENTS ..................................
+  .countainer-table{
+    left: 22%;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+    bottom: -1%;
+    padding: 0%;
+    margin-bottom: 1%;
+  }
+  
+  table.cinereousTable {
+    border: 4px solid  cadetblue;
+    width: 100%;
+    text-align: center;
+  }
+  table.cinereousTable td, table.cinereousTable th {
+    border: 1px solid #948473;
+    padding: 4px 4px;
+  }
+  table.cinereousTable tbody td {
+    font-size: 13px;
+  }
+  table.cinereousTable thead {
+    background: #20B2AA;
+    background: -moz-linear-gradient(top, #b7f7f3 0%, #2cbdb5 66%, #20B2AA 100%);
+    background: -webkit-linear-gradient(top, #b7f7f3 0%,#2cbdb5 66%, #20B2AA 100%);
+    background: linear-gradient(to bottom, #b7f7f3 0%, #2cbdb5 66%, #20B2AA 100%);
+  }
+  table.cinereousTable thead th {
+    font-size: 17px;
+    font-weight: bold;
+    color: #F0F0F0;
+    text-align: left;
+    border-left: 2px solid #948473;
+  }
+  table.cinereousTable thead th:first-child {
+    border-left: none;
+  }
+  
+  table.cinereousTable tfoot {
+    font-size: 16px;
+    font-weight: bold;
+    color: #F0F0F0;
+    background: #f9fafa;
+    background: -moz-linear-gradient(top, #afa396 0%, #f9fafa 66%, #20B2AA 100%);
+    background: -webkit-linear-gradient(top, #afa396 0%, #f9fafa 66%, #20B2AA 100%);
+    background: linear-gradient(to bottom, #afa396 0%, #f9fafa 66%, #20B2AA 100%);
+  }
+  table.cinereousTable tfoot td {
+    font-size: 16px;
+  }

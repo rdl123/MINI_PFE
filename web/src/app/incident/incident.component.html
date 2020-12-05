@@ -1,0 +1,84 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<div class="row body">
+
+  <app-sidebar> </app-sidebar>
+</div>
+<div style="padding-left: 210px; padding-top: 100px;">
+  <form class="form" #f = "ngForm" (ngSubmit) = "FiltreIncident()" >
+    <div style="display: block;margin : auto;">
+         <label style="margin:1px ;" class="label">Statut :</label>
+         <select name="Statut" (change)="do4($event)" id="statut" [value]="selectedStatut" class="form-control">
+                 <option  [value]=null  >Selectionner un statut </option>
+                 <option  [value]=0 >validé  </option>
+                 <option  [value]=1 >en cours de traitement</option>
+                 <option  [value]=2 >Traité </option>
+                  <option  [value]=3  >Bloqué </option>
+                   <option  [value]=4  >redirigé</option>
+         </select>
+
+
+
+
+         <label style="margin:1px ;" class="label">Secteur :</label>
+         <select   name="Secteur"  (change)="do2($event)" [value]="selectedSecteur" class="form-control">
+                     <option  [value]=null  >Selectionner un secteur </option>
+                 <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
+
+         </select>
+         
+         
+        <label style="margin:1px ;" class="label">Type :</label>
+         <select    name="Type" (change)="do3($event)"   [value]="selectedType" class="form-control">
+           <option  [value]=null  >Selectionner un Type </option>
+           <option  *ngFor="let t of ListType" [value]="t.id">{{t.type}}</option>
+         </select>
+
+         <label style="margin:1px ;"  class="label"  >Province :</label>
+         <select  name="Province" (change)="do1($event)" [value]="selectedProvinceId" class="form-control">
+                 <option  [value]=null  >  Selectionner une province </option>
+                 <option  *ngFor="let p of ListProvince" [value]="p.id">{{p.province}}</option>
+         </select>
+         
+         <button type="submit" class="monBoutton1 " style="margin:3px ;"><i class="fa fa-search" aria-hidden="true"></i>      Chercher</button>
+       </div>
+         
+       
+ </form> 
+<p></p>
+<button   class="monBoutton "  (click)="AnnulerFiltreIncident()">Annuler le filtre</button>
+<button   class="monBoutton2" (click) = toggleDisplay() > show / Hide map</button>
+<p></p>
+
+
+ <div class="countainer-table">
+  <table class="cinereousTable">
+    <thead>
+    <tr>
+    <th>Photo</th>
+    <th>Date</th>
+    <th>Statut</th>
+    <th>Secteur</th>
+    <th>Province</th>
+    <th>Type</th>
+    <th>Desciption</th>
+    </tr>
+    </thead>
+    
+    <tbody>
+    <tr *ngFor="let item of ListIncident">
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' "><img class="image" [src]="item.photo"></td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.date }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.secteur.secteur }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.province.province }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.type.type }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.description }}</td>
+    </tr>
+    
+    
+    </tbody>
+    </table>
+ </div>
+</div>
+
+<div  [hidden] = "!isShow" id="map" style="flex: 1; padding: 1em;"></div>

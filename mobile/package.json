@@ -33,6 +33,7 @@
     "@types/leaflet": "^1.5.7",
     "cordova-android": "8.1.0",
     "cordova-browser": "^6.0.0",
+    "cordova-plugin-android-permissions": "^1.1.2",
     "cordova-plugin-camera": "^4.1.0",
     "cordova-plugin-geolocation": "^4.0.2",
     "cordova-plugin-googlemaps": "^2.6.2",
@@ -100,10 +101,12 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-dreamover-uid": {},
       "cordova-plugin-uniquedeviceid": {},
+
       "cordova-plugin-googlemaps": {
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       }
+
     },
     "platforms": [
       "browser",
