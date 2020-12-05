@@ -26,6 +26,7 @@ import com.incident.backend.service.IncidentService;
 import com.incident.backend.service.ProvinceService;
 import com.incident.backend.service.SecteurService;
 import com.incident.backend.service.TypeService;
+import com.incident.backend.service.EtatService;
 import com.incident.backend.service.helpers.Filter;
 import com.incident.backend.service.helpers.IncidentInfos;
 import com.incident.backend.service.helpers.ProvinceType;
@@ -48,6 +49,9 @@ public class IncidentController {
     private SecteurService secteurService;
     @Autowired
     private TypeService typeService;
+    @Autowired
+    private EtatService etatService;
+    
     @Autowired
     private ProvinceService provinceService;
     @PostMapping(value = "/query")
@@ -93,6 +97,7 @@ public class IncidentController {
     }
     @PostMapping(value = "/querystatutProvince")
     public List<Incident> queryer(@RequestBody StatutProvince statutProvince ) {
+    	System.out.println(statutProvince);
         List<Incident> result = incidentService.findByStatutProv(statutProvince);
         return result;
     }
@@ -111,7 +116,7 @@ public class IncidentController {
     @PostMapping(value = "/findBySecQuery")
     public List<Incident> findBySec(@RequestParam("field") String field,
                                     @RequestBody Secteur value) {
-        System.out.println("waaait");
+        
         return incidentService.findByQuery(field, value);
     }
 
@@ -146,9 +151,10 @@ public class IncidentController {
         Province province=provinceService.findByID(id);
         return incidentService.findByProvince(province);
     }
-    @GetMapping(value = "/find/Statut/{statut}")
-    public List<Incident> findByStatut(@PathVariable String statut) {
-        return incidentService.findByStatut(statut);
+    @GetMapping(value = "/find/Statut/{id}")
+    public List<Incident> findByStatut(@PathVariable long id) {
+    	Etat etat= etatService.findByID(id);
+        return incidentService.findByStatut(etat);
     }
     @GetMapping(value = "/find/UserId/{id}")
     public List findByUserId(@PathVariable long id) {

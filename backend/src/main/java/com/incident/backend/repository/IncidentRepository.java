@@ -10,12 +10,12 @@ import com.incident.backend.entity.Incident;
 import com.incident.backend.entity.Province;
 import com.incident.backend.entity.Secteur;
 import com.incident.backend.entity.Type;
-
+import com.incident.backend.entity.Etat;
 
 public interface IncidentRepository extends JpaRepository<Incident,Long>, JpaSpecificationExecutor<Incident> {
     public Incident findById(long Id);
     public List<Incident> findBySecteur(Secteur secteur);
-    List<Incident> findByStatut(String statut);
+    List<Incident> findByStatut(Etat etat);
     List<Incident> findByProvince(Province province);
     List<Incident> findByType(Type type);
     List<Incident> findByime(String ime);

@@ -41,14 +41,15 @@
     <br>
     <ion-item lines="none">
       <ion-label style="color: steelblue;"> Statut  : </ion-label>
-      <ion-select placeholder="Choisissez  un statut" id="Statut" [value]="SelectedStatut1"  (ionChange)="do4($event)" >
-        <ion-select-option [value]=0>declare </ion-select-option>
-        <ion-select-option [value]=1>en cours de traitement </ion-select-option>
-        <ion-select-option [value]=2>Traité  </ion-select-option>
-        <ion-select-option [value]=3>Bloqué </ion-select-option>
-        <ion-select-option [value]=4>redirigé </ion-select-option>
-        <ion-select-option [value]=5>rejeté </ion-select-option>
-        <ion-select-option [value]=5>validé </ion-select-option>
+      <ion-select placeholder="Choisissez  un statut" name="idStatutChoisi" [value]=1 [(ngModel)]="idStatutChoisi"  (ionChange)="do4($event)">
+        <ion-select-option [value]=6>Declaré</ion-select-option>
+        <ion-select-option [value]=2>En cours de traitement</ion-select-option>
+        <ion-select-option [value]=3>Validé</ion-select-option>
+        <ion-select-option [value]=4>Redirigé</ion-select-option>
+        <ion-select-option [value]=7>Traité</ion-select-option>
+        <ion-select-option [value]=5>Rejeté </ion-select-option>
+        <ion-select-option [value]=1>Bloqué</ion-select-option>
+    
       </ion-select>
     </ion-item>
     <br>
@@ -65,22 +66,28 @@
 <div *ngFor="let item of ListIncident">
   <br>
   <div class="cardcontainer">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
     <div style="display: flex;">
-      <div style="width: 35%;height: auto;">
+      
+      <div style="width: 35%;">
         <ion-img class="image_style" [src]="item.photo"></ion-img>
       </div>
       <div style="margin-left:2%;width: 60%;">
+        
         <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
-          <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
-        </div>
-        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
-          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
-          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
           <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
-          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
-          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
           
         </div>
+
         <div style="font-size: small;margin-right: 1%; ">
           {{item.description.substring(0,60)}}...
         </div>

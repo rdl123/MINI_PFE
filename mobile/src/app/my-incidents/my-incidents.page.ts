@@ -8,6 +8,7 @@ import {CustomFilter} from '../entites/CustumFilter';
 import {Secteur} from '../entites/Secteur';
 import {Province} from '../entites/Province';
 import {Type} from '../entites/Type';
+import {Statut} from '../entites/Statut';
 import {LIST_SECTEUR} from '../utils/constants';
 import {IncidentService} from '../services/Incident.service';
 import {Map} from 'leaflet';
@@ -33,7 +34,7 @@ export class MyIncidentsPage implements OnInit {
   ListIncident: any;
   idProvinceChoisi: any;
   selectedProvinceId: any = '';
-  idStatutChoisi: any;
+  idStatutChoisi: number;
   idSecteurChoisi: any;
   idTyprChoisi: any;
     selectedValue: any;
@@ -57,6 +58,7 @@ export class MyIncidentsPage implements OnInit {
     this.CustumFilter.secteur = new Secteur();
     this.CustumFilter.province = new Province();
     this.CustumFilter.type = new Type();
+    this.CustumFilter.statut = new Statut();
     this.getSecteur();
 
     this.getProvince();
@@ -156,10 +158,13 @@ export class MyIncidentsPage implements OnInit {
     });
   }
   do4(evt) {
-    this.CustumFilter.statut = LIST_SECTEUR[evt.target.value];
-    this.idStatutChoisi = LIST_SECTEUR[evt.target.value];
+    this.CustumFilter.statut.id = this.idStatutChoisi;
+    //this.idStatutChoisi = LIST_SECTEUR[evt.target.value];
   }
+  setStatut(s){
+      console.log(s);
 
+  }
   FiltreIncident() {
     
     console.log(this.idTyprChoisi, this.idSecteurChoisi, this.idProvinceChoisi, this.idStatutChoisi);
@@ -206,7 +211,8 @@ export class MyIncidentsPage implements OnInit {
             );
         }
         if (this.idStatutChoisi != undefined && this.idTyprChoisi == undefined && this.idSecteurChoisi == undefined && this.idProvinceChoisi == undefined ) {
-            this.incidentService.findByByStatut(this.idStatutChoisi).subscribe(
+            console.log(this.idStatutChoisi);
+            this.incidentService.findByStatut(this.idStatutChoisi).subscribe(
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;

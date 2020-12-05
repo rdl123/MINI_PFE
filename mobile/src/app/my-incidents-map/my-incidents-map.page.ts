@@ -80,6 +80,18 @@ export class MyIncidentsMapPage implements OnInit {
         iconAnchor:   [10, 41],
         iconSize:     [25, 41], // size of the icon    
     });
+
+    var greyIcon = L.icon({
+        iconUrl: '../../assets/images/grey_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
+    var cornblueIcon = L.icon({
+        iconUrl: '../../assets/images/cornflowblue_marker.png',
+        iconAnchor:   [10, 41],
+        iconSize:     [25, 41], // size of the icon    
+    });
+
         // In setView add latLng and zoom
        this.map = new Map('mapId').setView([ 31.1728205, -7.3362482], 5);
        tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
@@ -91,17 +103,20 @@ export class MyIncidentsMapPage implements OnInit {
            // .circle([this.ListPoi[i].latitude, this.ListPoi[i].longitude], {radius: 500}).addTo(this.map);
            var marker;
            console.log("statut est  : " + this.ListIncident[i].statut.id );
-           if(this.ListIncident[i].statut.id==1){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==2){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);}
+
+           if(this.ListIncident[i].statut.id==1){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==2){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);}
            if(this.ListIncident[i].statut.id==3){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greenIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==4){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==5){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);}
-           
+           if(this.ListIncident[i].statut.id==4){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==5){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greyIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==6){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==7){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: cornblueIcon}).addTo(this.map);}
+
           // marker.bindPopup('longitude:' + this.ListIncident[i].longitude + '</br> latitude:' + this.ListIncident[i].latitude);
-           marker.bindPopup('<b>Secteur:</b>' + this.ListIncident[i].secteur.secteur +
-               '</br> <b>Type: </b>' + this.ListIncident[i].type.type +
-               '</br> <b>Longitude:</b>' + this.ListIncident[i].longitude + '</br> <b>Latitude:</b>' + this.ListIncident[i].latitude +
-               '</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+           marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+                '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+               '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+               '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
            );
        }
        }
