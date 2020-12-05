@@ -220,8 +220,7 @@ export class AddIncidentPage implements OnInit {
 
     }*/
     addIncident() {
-      this.Incident.province.id=4;
-      this.Incident.province.province="Laayoune";
+      
 
         this.Incident.ime = this.device.uuid;
         console.log('Device UUID is: ' + this.device.uuid);
