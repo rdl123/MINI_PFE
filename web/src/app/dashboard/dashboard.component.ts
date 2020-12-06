@@ -26,8 +26,13 @@ sect_statistique: any;
   statut_statistique:any;
   LabelsStatut=[];
   ValuesStatut=[];
+  div1:boolean=true;
+  div2:boolean=true;
+  div3:boolean=true;
+  div4:boolean=true;
   constructor(private IncidentService: IncidentService, private SecteurService: SecteurService,
               private http: HttpClient) {
+                
     this.http.get('http://localhost:9090/Incident/secteur/Statistique').subscribe(
       data => {
         this.sect_statistique = data;
@@ -58,8 +63,21 @@ sect_statistique: any;
         this.statut_statistique = data;
         for (let i = 0; i < this.statut_statistique.length; i++) {
 
-          this.LabelsStatut.push(this.statut_statistique[i][0]);
-          this.ValuesStatut.push(this.statut_statistique[i][1]);
+          if(this.statut_statistique[i][0]=="declaré"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+                
+         
+          
+        }
+        for (let i = 0; i < this.statut_statistique.length; i++) {
+
+          if(this.statut_statistique[i][0]!="declaré"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+          
 
         }
       }
@@ -76,6 +94,8 @@ sect_statistique: any;
         }
       }
     );
+
+    
 
 
     // pie chart
@@ -119,18 +139,19 @@ sect_statistique: any;
 
 // province
   ProvChartOptions: ChartOptions = {
+    
     responsive: true,
     scales: {
-      yAxes: [{
+      xAxes: [{
           ticks: {
               suggestedMin: 0,
               suggestedMax: this.Labels.length +4,
           }
       }]
-  }
+  } 
   };
   ProvChartLabels: Label[] = this.LabelsProv;
-  ProvbarChartType: ChartType = 'bar';
+  ProvbarChartType: ChartType = 'horizontalBar';
   ProvChartLegend = true;
   ProvChartPlugins = [];
   //color = [red];
@@ -160,7 +181,7 @@ sect_statistique: any;
   StatutChartData: ChartDataSets[] = [
     {
       data: this.ValuesStatut, label: 'Nombre d incidents par statut',
-      backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], }
+      backgroundColor: ["#8e5ea2","#c45850","#3cba9f","#3e95cd","#c4ba9f","#e8c3b9"], }
   ];
   // type
   TypeChartOptions: ChartOptions = {
@@ -185,8 +206,38 @@ sect_statistique: any;
       backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850"], }
   ];
   ngOnInit() {
+    
 
   }
-
+  isShow = false;
+  isShow1 = false;
+  isShow2 = false;
+  isShow3 = false;
+  isShow4 = false;
+ 
+  toggleDisplay1() {
+    this.isShow = !this.isShow;
+    this.isShow1 = !this.isShow1;
+    this.isShow2 = false;
+    this.isShow3 = false;
+    this.isShow4 = false;}
+    toggleDisplay2() {
+      this.isShow = !this.isShow;
+      this.isShow1 = false;
+      this.isShow2 = !this.isShow2;
+       this.isShow3 = false;
+       this.isShow4 = false;}
+       toggleDisplay3() {
+        this.isShow = !this.isShow;
+        this.isShow1 = false;
+        this.isShow2 = false;
+         this.isShow3 = !this.isShow3;
+         this.isShow4 = false;}
+         toggleDisplay4() {
+          this.isShow = !this.isShow;
+          this.isShow1 = false;
+          this.isShow2 = false;
+           this.isShow3 = false;
+           this.isShow4 = !this.isShow4;}
 
 }

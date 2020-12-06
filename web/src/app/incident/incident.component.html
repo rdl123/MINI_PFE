@@ -50,7 +50,7 @@
 <p></p>
 
 
- <div class="countainer-table">
+ <div [hidden] = "isShow" class="countainer-table">
   <table class="cinereousTable">
     <thead>
     <tr>
@@ -68,7 +68,14 @@
     <tr *ngFor="let item of ListIncident">
     <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' "><img class="image" [src]="item.photo"></td>
     <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.date }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==1" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==2" style="font-weight: bold;color: orange;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==4" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==5" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==7" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==6" style="font-weight: bold;color: darkmagenta;">{{ item.statut.etat }}</td>
+    
     <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.secteur.secteur }}</td>
     <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.province.province }}</td>
     <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.type.type }}</td>
