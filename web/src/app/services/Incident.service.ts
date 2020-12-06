@@ -52,7 +52,7 @@ export class IncidentService {
   findByByType(id: number) {
     return this.http.get(API_URL + '/Incident/find/type/' + id);
   }
-  findByByStatut(statut: string) {
+  findByByStatut(statut: number) {
     return this.http.get(API_URL + '/Incident/find/Statut/'+ statut );
   }
   findByProvinceSecteur(sectprovince: SectProvince) {

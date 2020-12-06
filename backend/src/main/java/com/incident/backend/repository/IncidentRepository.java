@@ -25,7 +25,7 @@ public interface IncidentRepository extends JpaRepository<Incident,Long>, JpaSpe
 
     @Query("select i.province.province,count(*) from Incident i  join Province p  on i.province.id = p.id group by i.province.province")
     List  findIncidentsProv();
-    @Query("select statut, count(*) from Incident group by statut")
+    @Query("select i.statut.statut,count(*) from Incident i  join Etat e  on i.statut.id = e.id group by i.statut.statut")
     List  findIncidentsStatut();
     @Query("select i.type.type,count(*) from Incident i  join Type t  on i.type.id = t.id group by i.type.type")
     List  findIncidentsType();
