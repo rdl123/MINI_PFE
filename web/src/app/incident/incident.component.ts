@@ -320,7 +320,20 @@ export class IncidentComponent implements OnInit {
   }
   do4(evt) {
     this.CustumFilter.statut = LIST_STATUTS[evt.target.value];
-    this.idStatutChoisi = LIST_STATUTS[evt.target.value];
+    if(LIST_STATUTS[evt.target.value]=="validé")
+            this.idStatutChoisi = 3;
+    if(LIST_STATUTS[evt.target.value]=="en cours de traitement")
+            this.idStatutChoisi = 2;
+    if(LIST_STATUTS[evt.target.value]=="Traité")
+            this.idStatutChoisi = 7;
+    if(LIST_STATUTS[evt.target.value]=="Bloqué")
+            this.idStatutChoisi = 1;
+    if(LIST_STATUTS[evt.target.value]=="redirigé")
+            this.idStatutChoisi = 4;
+    if(LIST_STATUTS[evt.target.value]=="declaré")
+            this.idStatutChoisi = 6;
+    if(LIST_STATUTS[evt.target.value]=="rejeté")
+            this.idStatutChoisi = 5;
     console.log(this.idStatutChoisi);
   }
   do2(evt) {
