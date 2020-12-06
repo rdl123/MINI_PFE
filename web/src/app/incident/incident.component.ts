@@ -10,15 +10,18 @@ import { CustomFilter } from '../entities/CustomFilter';
 import { Secteur } from '../entities/Secteur';
 import { Province } from '../entities/Province';
 import { Type } from '../entities/Type';
+import { icon } from 'leaflet';
 
 declare  let L;
 declare var require: any;
 delete L.Icon.Default.prototype._getIconUrl;
 L.Icon.Default.mergeOptions({
-  iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
-  iconUrl: require('leaflet/dist/images/marker-icon.png'),
-  shadowUrl: require('leaflet/dist/images/marker-shadow.png')
+  //iconRetinaUrl: require('leaflet/dist/images/marker-icon-2x.png'),
+  //iconUrl: require('leaflet/dist/images/marker-icon.png'),
+  //shadowUrl: require('leaflet/dist/images/marker-shadow.png'),
+  
 });
+
 const markers = Array();
 @Component({
   selector: 'app-incident',
@@ -66,6 +69,7 @@ export class IncidentComponent implements OnInit {
   }
 
   ngOnInit() {
+   
     const lat = 31.1728205;
     const lng = -7.3362482;
     const zoom = 6;
@@ -182,10 +186,40 @@ export class IncidentComponent implements OnInit {
 
   }
   marker(ListIncident) {
+    var redIcon = L.icon({
+      iconUrl: require('src/assets/leaflet/images/red_marker.png'),
+      iconAnchor:   [10, 41],
+      iconSize:     [25, 41], // size of the icon    
+  });
+  var blueIcon = L.icon({
+      iconUrl: require('src/assets/leaflet/images/blue_marker.png'),
+      iconAnchor:   [10, 41],
+      iconSize:     [25, 41], // size of the icon    
+  });
+  var greenIcon = L.icon({
+      iconUrl: require('src/assets/leaflet/images/green_marker.png'),
+      iconAnchor:   [10, 41],
+      iconSize:     [25, 41], // size of the icon    
+  });
+  var yellowIcon = L.icon({
+      iconUrl: require('src/assets/leaflet/images/yellow_marker.png'),
+      iconAnchor:   [10, 41],
+      iconSize:     [25, 41], // size of the icon    
+  });
+  var orangeIcon = L.icon({
+      iconUrl: require('src/assets/leaflet/images/orange_marker.png'),
+      iconAnchor:   [10, 41],
+      iconSize:     [25, 41], // size of the icon    
+  });
+  var greyIcon = L.icon({
+    iconUrl: require('src/assets/leaflet/images/grey_marker.png'),
+    iconAnchor:   [10, 41],
+    iconSize:     [25, 41], // size of the icon    
+});
     for (let i = 0; i < ListIncident.length; i++) {
       
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté') {
-        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude] ).addTo(this.map);
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "Bloqué") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: yellowIcon} ).addTo(this.map);
         marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
           '</br> <b>Type: </b>' + ListIncident[i].type.type +
         '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
@@ -193,7 +227,66 @@ export class IncidentComponent implements OnInit {
         );
         markers.push(marker);
       }
-      // .circle([this.ListPoi[i].latitude, this.ListPoi[i].longitude], {radius: 500}).addTo(this.map);
+      
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "En cours de traitement") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: orangeIcon} ).addTo(this.map);
+        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type +
+        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
+          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "validé") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: greenIcon} ).addTo(this.map);
+        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type +
+        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
+          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "redirigé") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: blueIcon} ).addTo(this.map);
+        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type +
+        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
+          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "rejeté") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: redIcon} ).addTo(this.map);
+        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type +
+        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
+          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté'  && this.listIncident2[i].statut.etat == "declaré") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: yellowIcon} ).addTo(this.map);
+        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type +
+        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
+          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "Traité") {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: greyIcon} ).addTo(this.map);
+        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type +
+        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
+          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        );
+        markers.push(marker);
+      } 
 
     }
 

@@ -115,6 +115,7 @@ listProf = [];
     }
   }
   add() {
+    console.log(this.listUsers.length);
     //for (let i = 0; i < this.listUsers.length; i++);
     this.user.id = this.listUsers.length+1;
     this.user.role=new Role();
