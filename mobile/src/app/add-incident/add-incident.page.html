@@ -7,7 +7,7 @@
   </ion-toolbar></ion-header>
 
 <ion-content>
-  <div class="container" center>
+  <div class="container">
     <form #f="ngForm" >
 
       
@@ -63,10 +63,10 @@
       
       
       
-      <div class="pay_div">
-        <ion-button (click)="addIncident()" ><ion-icon  size="large" name="checkbox-outline"></ion-icon>Déclarer</ion-button>
+      <div class="pay_div" center style="margin-right: 5%;" >
+        <ion-button (click)="addIncident()" ><ion-icon  size="default" name="checkbox-outline"></ion-icon>Déclarer</ion-button>
      
-        <ion-button  (click)="AnnulerIncident()"><ion-icon  size="large" name="close-circle-outline"></ion-icon>Annuler</ion-button>
+        <ion-button  (click)="AnnulerIncident()"><ion-icon  size="default" name="close-circle-outline"></ion-icon>Annuler</ion-button>
       </div>
       <br>
       
