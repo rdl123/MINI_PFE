@@ -43,7 +43,7 @@ export class MyIncidentsPage implements OnInit {
     selectedSecteur1: any;
     SelectedType1: any;
     SelectedStatut1: any;
-    ime = '62d64d6309ff660f';
+    Myime ="ab06f86a04742562";
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable
@@ -106,7 +106,7 @@ export class MyIncidentsPage implements OnInit {
   }
 
  getIncident() {
-    this.incidentService.findByIme(this.ime).subscribe(
+    this.incidentService.findByIme(this.Myime).subscribe(
         data => {
           this.data = data;
           this.Incident = this.data;
@@ -119,6 +119,8 @@ export class MyIncidentsPage implements OnInit {
         }
     );
   }
+
+
   do1(evt) {
      console.log(evt);
 
@@ -174,6 +176,7 @@ export class MyIncidentsPage implements OnInit {
                 console.log(data);
                 this.data = data;
                 this.ListIncident = this.data;
+               
                 this.incidentService.listIncidents.next(this.ListIncident);
             }
         );
@@ -184,7 +187,7 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
-
+                    
                 }
             );
         }
@@ -194,7 +197,7 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
-
+                    
                 }
             );
         }
@@ -205,8 +208,9 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     console.log(data);
                     this.ListIncident = this.data;
-                    this.incidentService.listIncidents.next(this.ListIncident);
-
+                    //this.incidentService.listIncidents.next(this.ListIncident);
+                    
+                    console.log(this.ListIncident);
                 }
             );
         }
@@ -216,6 +220,7 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                   
                     this.incidentService.listIncidents.next(this.ListIncident);
 
                 }
@@ -226,6 +231,7 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    
                     this.incidentService.listIncidents.next(this.ListIncident);
 
                 }
@@ -237,6 +243,7 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    
                     this.incidentService.listIncidents.next(this.ListIncident);
 
                 }
@@ -247,6 +254,7 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                   
                     this.incidentService.listIncidents.next(this.ListIncident);
                     console.log('oui', this.ListIncident);
                 }
@@ -259,6 +267,7 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
+                    
                     console.log('oui', this.ListIncident);
                 }
             );
@@ -270,6 +279,7 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
+                    
                     console.log('oui', this.ListIncident);
                 }
             );
@@ -280,6 +290,7 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
+                    
                     console.log('oui', this.ListIncident);
                 }
             );
@@ -290,7 +301,7 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
-
+                    
                     console.log('oui', this.ListIncident);
 
                 }
@@ -303,6 +314,7 @@ export class MyIncidentsPage implements OnInit {
                     this.ListIncident = this.data;
                     this.incidentService.listIncidents.next(this.ListIncident);
                     console.log('oui', this.ListIncident);
+                    
                 }
             );
         }

@@ -53,7 +53,7 @@
       </ion-select>
     </ion-item>
     <br>
-    <div class="pay_div">
+    <div class="pay_div" style="margin-right: 5%;">
       <ion-button (click)="FiltreIncident()" ><ion-icon  size="large" name="funnel"></ion-icon>Filter</ion-button>
       <ion-button  (click)="AnnulerFiltreIncident()"><ion-icon  size="large" name="close-circle-outline"></ion-icon>Annuler</ion-button>
     </div>
@@ -63,7 +63,8 @@
 
 <br>
 
-<div *ngFor="let item of ListIncident">
+<div *ngFor="let item of ListIncident" >
+  <div *ngIf="item.ime==Myime">
   <br>
   <div class="cardcontainer">
     <br>
@@ -91,17 +92,17 @@
           {{item.description.substring(0,60)}}...
         </div>
         
-        <div class="detail_btn">
+        <div class="detail_btn" >
           <ion-button  (click)="OpenModal(item)" >Details </ion-button>
         </div>
       </div>
       
    
-    </div>
+          </div>
     
       
+    </div>
   </div>
-
 </div>
 
 </ion-content>

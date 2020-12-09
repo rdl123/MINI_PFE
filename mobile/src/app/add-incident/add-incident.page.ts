@@ -13,7 +13,7 @@ import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {AlertController} from '@ionic/angular';
 import { Device } from '@ionic-native/device/ngx';
 import {ProvinceService} from '../services/province.service';
-
+import {Base64} from '@ionic-native/base64/ngx';;
 @Component({
   selector: 'app-add-incident',
   templateUrl: './add-incident.page.html',
@@ -21,12 +21,13 @@ import {ProvinceService} from '../services/province.service';
 })
 
 export class AddIncidentPage implements OnInit {
+  private win: any = window;
   Incident: Incident;
   ListSecteur: any;
   ListType: any;
   data: any;
   inci: Incident;
-
+  
     title = 'ImageUploaderFrontEnd';
     
     public selectedFile;
@@ -44,7 +45,7 @@ export class AddIncidentPage implements OnInit {
     latitude: any;
     description: any;
     photo: any;
-  constructor( 
+  constructor( private base64:Base64,
               private http: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable
@@ -183,7 +184,20 @@ export class AddIncidentPage implements OnInit {
     this.camera.getPicture(params).then(
         data => {
           const base64Image = 'data:image/jpeg;base64,' + data;
-          this.Incident.photo = base64Image;
+          
+          this.base64.encodeFile(data).then((base64File: string) => {
+            console.log(base64File);
+            //base64Image = base64Image + base64File;
+            this.Incident.photo=base64File;
+            //this.showAlert(this.file2base64);
+           // alert(base64File);
+           alert("Image ajoutée avec succées");
+          }, (err) => {
+            console.log(err);
+          });
+          //this.Incident.photo = base64Image;
+          //this.win.Ionic.WebView.convertFileSrc(data);
+          this.photo=data;
 
         }
     );

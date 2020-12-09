@@ -170,7 +170,7 @@ public class IncidentController {
         DateFormat dateFormat = new SimpleDateFormat("HH:mm:ss");
         String formattedDate=dateFormat.format(date);
         incident.setDate(date);
-        Etat s = new Etat(1,"Déposée");
+        Etat s = new Etat(6,"declaré");
         incident.setStatut(s);
          //incidentService.getGeometry();
         incidentService.save(incident);
