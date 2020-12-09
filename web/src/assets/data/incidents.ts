@@ -1,0 +1,80 @@
+export const data = [
+    {
+        "id": 1,
+        "Secteur": 'Assainissement',
+        "Type":"Fuite",
+        "Province":"Casablanca",
+        "id_prov":56,
+        "latitude":"33.595062",
+        "longitude":"-7.618777",
+        "description": "Cette incident concerne la conduite se trouvant dans l'intersection du quartier principal avec le quartier HassanII",
+        "Statut": "en cours",
+        "date": "12/06/2019",
+        "Photo": 56840
+    },
+    {
+        "id": 2,
+        "Secteur": 'Eclairage public',
+        "Type":"Lampe détruite",
+        "Province":"Tiznit",
+        "id_prov":49,
+        "latitude":"29.698624",
+        "longitude":"-9.7312815",
+        "description": "Cette incident concerne la conduite se trouvant dans l'intersection du quartier principal avec le quartier HassanII",
+        "Statut": "Validé",
+        "date": "14/06/2019",
+        "Photo": 56840
+    },
+    {
+        "id": 3,
+        "Secteur": 'Assainissement',
+        "Type":"Fuite",
+        "Province":"Settat",
+        "id_prov": 39,
+        "latitude":"33.002397",
+        "longitude":"-7.619867",
+        "description": "Cette incident concerne la conduite se trouvant dans l'intersection du quartier principal avec le quartier HassanII",
+        "Statut": "en cours",
+        "date": "12/06/2019",
+        "Photo": 56840
+    },
+    {
+        "id": 4,
+        "Secteur": 'Voirie',
+        "Type":"Problèmes dans la route",
+        "Province":"Agadir Ida Outanane",
+        "id_prov": 1,
+        "latitude":"34.230155",
+        "longitude":"-4.010104",
+        "description": "Cette incident concerne la conduite se trouvant dans l'intersection du quartier principal avec le quartier HassanII",
+        "Statut": "en cours",
+        "date": "12/06/2019",
+        "Photo": 56840
+    },
+    {
+        "id": 5,
+        "Secteur": 'Assainissement',
+        "Type":"Fuite",
+        "Province":"Tanger-Haouz",
+        "id_prov":43,
+        "latitude":"35.7642313",
+        "longitude":"-5.818626",
+        "description": "Cette incident concerne la conduite se trouvant dans l'intersection du quartier principal avec le quartier HassanII",
+        "Statut": "en cours",
+        "date": "12/06/2019",
+        "Photo": 56840
+    },
+    {
+        "id": 6,
+        "Secteur": 'Electricité',
+        "Type":"Rupture",
+        "Province":"Marrakech",
+        "id_prov":57,
+        "latitude":"31.6258257",
+        "longitude":"-7.9891608",
+        "description": "Cette incident concerne la conduite se trouvant dans l'intersection du quartier principal avec le quartier HassanII",
+        "Statut": "en cours",
+        "date": "12/06/2019",
+        "Photo": 56840
+    }
+];

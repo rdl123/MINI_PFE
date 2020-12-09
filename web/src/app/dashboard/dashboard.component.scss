@@ -1,0 +1,12 @@
+
+
+.row {
+  display: flex;
+}
+.col {
+  flex: 1; 
+  padding: 20px;
+  height:50%;
+  width: 30%;
+  border-style: inset;
+}

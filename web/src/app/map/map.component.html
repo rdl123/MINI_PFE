@@ -1,0 +1,66 @@
+<!-- main app container -->
+ <!-- <div class="container"> -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <div class="row body">
+
+        <app-sidebar> </app-sidebar>
+      </div>
+<div style="padding-left: 210px; padding-top: 100px;">
+    <div >
+
+        <form class="form" #f = "ngForm" (ngSubmit) = "FiltreIncident()" >
+          <div style="display: block;margin : auto;">
+               <label style="margin:1px ;" class="label">Statut :</label>
+               <select name="Statut" (change)="do4($event)" id="statut" [value]="selectedStatut" class="form-control">
+                       <option  [value]=null  >Selectionner un statut </option>
+                       <option  [value]=0 >validé  </option>
+                       <option  [value]=1 >en cours de traitement</option>
+                       <option  [value]=2 >Traité </option>
+                        <option  [value]=3  >Bloqué </option>
+                         <option  [value]=4  >redirigé</option>
+               </select>
+      
+      
+      
+      
+               <label style="margin:1px ;" class="label">Secteur :</label>
+               <select   name="Secteur"  (change)="do2($event)" [value]="selectedSecteur" class="form-control">
+                           <option  [value]=null  >Selectionner un secteur </option>
+                       <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
+      
+               </select>
+               
+               
+              <label style="margin:1px ;" class="label">Type :</label>
+               <select    name="Type" (change)="do3($event)"   [value]="selectedType" class="form-control">
+                 <option  [value]=null  >Selectionner un Type </option>
+                 <option  *ngFor="let t of ListType" [value]="t.id">{{t.type}}</option>
+               </select>
+      
+               <label style="margin:1px ;"  class="label"  >Province :</label>
+               <select  name="Province" (change)="do1($event)" [value]="selectedProvinceId" class="form-control">
+                       <option  [value]=null  >  Selectionner une province </option>
+                       <option  *ngFor="let p of ListProvince" [value]="p.id">{{p.province}}</option>
+               </select>
+               
+               <button type="submit" class="monBoutton1 " style="margin:3px ;"><i class="fa fa-search" aria-hidden="true"></i>      Chercher</button>
+             </div>
+               
+             
+       </form> 
+       <p></p>
+       <button   class="monBoutton "  (click)="AnnulerFiltreIncident()">Annuler le filtre</button>
+        <p></p>
+      </div>
+       
+      
+      
+      
+      
+      
+      
+      
+         <div style="display: flex;">
+            <div id="map" style="flex: 1; padding: 1em;"></div>
+          </div>
+</div>

@@ -1,0 +1,42 @@
+.txt{
+    height: 70px;
+    width: 150px;
+}
+.image{
+  width: 100px;
+  height: 80px;
+}
+.panel-primary{
+  margin-right: 6% !important;
+  margin-left: 6% !important;
+}
+
+.panel-primary > .panel-heading {
+  color: #fff;
+  background-color: #20B2AA;
+  border-color: #337ab7;
+}
+.monBoutton1 {
+  background-color:#20B2AA;
+  Color:white;
+  font-weight: bold;
+  padding: 10px 40px;
+  border-radius: 3px;
+  cursor: pointer; 
+  left: 1%;
+  position: relative;
+  text-decoration: none;
+  }
+  .monBoutton {
+    background-color:#20B2AA;
+    Color:white;
+    font-weight: bold;
+    padding: 10px 40px;
+    border-radius: 3px;
+    left: -49%;
+    cursor: pointer; 
+    box-shadow: 0 8px 16px 0 grey;
+    text-decoration: none;
+    }
+
+    

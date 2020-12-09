@@ -1,0 +1,79 @@
+
+<div class="row body">
+
+  <app-sidebar> </app-sidebar>
+</div>
+<div style="padding-left: 210px; padding-top: 100px;">
+
+<ng-template #template>
+  <div >
+  <div class="modal-header">
+    Veuillez mettre a jour le statut
+    <button type="button" class="close pull-right" area-label="'close" (click)="modalRef.hide()">
+      <span area-hidden="true">&times;</span>
+    </button>
+
+  </div>
+  <div class="modal-body">
+
+    <label>statut:</label>
+    <select   name="statut"  (change)="getStatut($event)" class="form-control">
+      <option  [value]=null  >Selectionner un statut </option>
+      <option  *ngFor="let s of statut" >{{s}}</option>
+    </select>
+    <br>
+    <label *ngIf="StatutChoisi === 'validé'"> Professionnel:</label>
+    <select   name="user"   *ngIf="StatutChoisi === 'validé'" (change)="do2($event)" class="form-control">
+      <option  [value]=null  >Selectionner un  Professionnel </option>
+      <option  *ngFor="let s of prof"  value={{s.id}}>{{s.name}}</option>
+    </select>
+    <br>
+    <input *ngIf="StatutChoisi === 'rejeté'" type="text"  id="Motif" class="form-control"  formControlName="Motif" placeholder="Motif" (change)="motif($event)" >
+    <br>
+    <button type="submit" (click)="submit()" class="monBoutton" >valider</button>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+  </div>
+</ng-template>
+<div class="panel panel-primary">
+  <div class="panel-heading">
+    Liste des incidents
+    </div>
+    <table class="table table-condensed">
+      <thead>
+      <tr>
+        <th scope="col" > Photo </th>
+
+        <th scope="col"> Date </th>
+        <th scope="col" > Statut </th>
+        <th scope="col" > Secteur </th>
+        <th scope="col" > Province </th>
+        <th scope="col" > Type d'incident </th>
+        <th scope="col" > Desciption  </th>
+      </tr>
+      </thead>
+        <tbody>
+          <tr *ngFor="let item of Incidents" >
+            <td scope="row" >
+              <img class="image" [src]="item.photo">
+            </td>
+
+            <td scope="row">{{ item.date }}</td>
+            <td scope="row">{{ item.statut.etat }}</td>
+            <td scope="row">{{ item.secteur.secteur }}</td>
+            <td scope="row">{{ item.province.province }}</td>
+            <td scope="row">{{ item.type.type }}</td>
+            <td scope="row">{{ item.description }}</td>
+
+                
+            <button type="submit" class="monBoutton1"  *ngIf=" item.statut.etat === 'declaré'"  (click)="openModal(template,item)">Editer</button>
+          </tr>
+        </tbody>
+      </table>
+      
+</div>
+
+</div>
