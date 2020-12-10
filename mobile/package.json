@@ -104,18 +104,16 @@
       "cordova-plugin-googlemaps": {
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
-<<<<<<< HEAD
       },
       "com-badrit-base64": {},
       "cordova-plugin-ionic-webview": {}
-=======
+
       }
 
->>>>>>> 4649373101d0e2588f58370965b2eb03b4aa4368
     },
     "platforms": [
       "browser",
       "android"
     ]
   }
-}
+
