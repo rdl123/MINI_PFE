@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import {  marker } from 'leaflet';
 import {IncidentService} from '../services/Incident.service';
 import { Map, latLng, tileLayer, Layer } from 'leaflet';
-
+import {Device} from '@ionic-native/device/ngx';
 declare  let L;
 declare var require: any;
 delete L.Icon.Default.prototype._getIconUrl;
@@ -23,7 +23,7 @@ export class MyIncidentsMapPage implements OnInit {
     data: any;
     
     constructor(
-        private incidentService: IncidentService,
+        private incidentService: IncidentService,private device: Device
     ) {
 
         
@@ -104,20 +104,44 @@ export class MyIncidentsMapPage implements OnInit {
            var marker;
            console.log("statut est  : " + this.ListIncident[i].statut.id );
 
-           if(this.ListIncident[i].statut.id==1){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==2){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==3){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greenIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==4){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==5){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greyIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==6){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);}
-           if(this.ListIncident[i].statut.id==7){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: cornblueIcon}).addTo(this.map);}
+           if(this.ListIncident[i].statut.id==1 && this.ListIncident[i].ime == this.device.uuid ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
+           if(this.ListIncident[i].statut.id==2  && this.ListIncident[i].ime ==this.device.uuid ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
+           if(this.ListIncident[i].statut.id==3  && this.ListIncident[i].ime == this.device.uuid ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greenIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
+           if(this.ListIncident[i].statut.id==4  && this.ListIncident[i].ime == this.device.uuid ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
+           if(this.ListIncident[i].statut.id==5  && this.ListIncident[i].ime ==this.device.uuid ){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greyIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
+           if(this.ListIncident[i].statut.id==6  && this.ListIncident[i].ime ==this.device.uuid ){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
+           if(this.ListIncident[i].statut.id==7  && this.ListIncident[i].ime == this.device.uuid ){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: cornblueIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
+          '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
+          '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
+      );}
 
           // marker.bindPopup('longitude:' + this.ListIncident[i].longitude + '</br> latitude:' + this.ListIncident[i].latitude);
-           marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
-                '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
-               '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
-               '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
-           );
+
        }
        }
 

@@ -32,7 +32,6 @@
     "@types/arcgis-js-api": "^4.14.0",
     "@types/jquery": "^3.3.31",
     "@types/leaflet": "^1.5.7",
-    "com-badrit-base64": "^0.2.0",
     "cordova-android": "8.1.0",
     "cordova-browser": "^6.0.0",
     "cordova-plugin-android-permissions": "^1.1.2",
@@ -68,6 +67,7 @@
     "@types/jasminewd2": "~2.0.3",
     "@types/node": "~8.9.4",
     "codelyzer": "^5.0.0",
+    "com-badrit-base64": "^0.2.0",
     "cordova-plugin-device": "2.0.2",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-splashscreen": "5.0.2",
@@ -100,20 +100,16 @@
       "cordova-plugin-ionic-keyboard": {},
       "cordova-plugin-dreamover-uid": {},
       "cordova-plugin-uniquedeviceid": {},
-
       "cordova-plugin-googlemaps": {
         "PLAY_SERVICES_VERSION": "15.0.1",
         "ANDROID_SUPPORT_V4_VERSION": "27.+"
       },
       "com-badrit-base64": {},
       "cordova-plugin-ionic-webview": {}
-
-      }
-
-    },
-    "platforms": [
-      "browser",
-      "android"
-    ]
-  }
-
+    }
+  },
+  "platforms": [
+    "browser",
+    "android"
+  ]
+}

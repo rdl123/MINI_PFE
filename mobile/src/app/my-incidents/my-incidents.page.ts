@@ -43,7 +43,7 @@ export class MyIncidentsPage implements OnInit {
     selectedSecteur1: any;
     SelectedType1: any;
     SelectedStatut1: any;
-    Myime ="ab06f86a04742562";
+    Myime = this.device.uuid;
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable
@@ -176,7 +176,6 @@ export class MyIncidentsPage implements OnInit {
                 console.log(data);
                 this.data = data;
                 this.ListIncident = this.data;
-               
                 this.incidentService.listIncidents.next(this.ListIncident);
             }
         );

@@ -191,7 +191,7 @@ export class AddIncidentPage implements OnInit {
             this.Incident.photo=base64File;
             //this.showAlert(this.file2base64);
            // alert(base64File);
-           alert("Image ajoutée avec succées");
+          
           }, (err) => {
             console.log(err);
           });
@@ -239,7 +239,9 @@ export class AddIncidentPage implements OnInit {
         this.http.post(API_URL + '/Incident/add', this.Incident).subscribe(
         data => {
           console.log(data);
+          alert("Image ajoutée avec succées");
         }
+      
     );
     }
     AnnulerIncident() {
