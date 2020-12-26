@@ -88,7 +88,7 @@ export class AppComponent implements OnInit {
 
           this.modalRef.hide();
           this.comportement = 'Se deconnecter ';
-          this.test = ' Salut  ' + this.currentUser.fullname;
+          this.test = ' Bonjour  ' + this.currentUser.fullname;
 
         } else {
            this.message = ' ! username ou password est errone';

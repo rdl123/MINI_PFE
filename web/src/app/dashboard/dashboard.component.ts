@@ -73,7 +73,52 @@ sect_statistique: any;
         }
         for (let i = 0; i < this.statut_statistique.length; i++) {
 
-          if(this.statut_statistique[i][0]!="declaré"){
+          if(this.statut_statistique[i][0]=="rejeté"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+          
+
+        }
+        for (let i = 0; i < this.statut_statistique.length; i++) {
+
+          if(this.statut_statistique[i][0]=="validé"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+          
+
+        }
+        for (let i = 0; i < this.statut_statistique.length; i++) {
+
+          if(this.statut_statistique[i][0]=="En cours de traitement"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+          
+
+        }
+        for (let i = 0; i < this.statut_statistique.length; i++) {
+
+          if(this.statut_statistique[i][0]=="Traité"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+          
+
+        }
+        for (let i = 0; i < this.statut_statistique.length; i++) {
+
+          if(this.statut_statistique[i][0]=="redirigé"){
+            this.LabelsStatut.push(this.statut_statistique[i][0]);
+            this.ValuesStatut.push(this.statut_statistique[i][1]);
+          }
+          
+
+        }
+        for (let i = 0; i < this.statut_statistique.length; i++) {
+
+          if(this.statut_statistique[i][0]=="Bloqué"){
             this.LabelsStatut.push(this.statut_statistique[i][0]);
             this.ValuesStatut.push(this.statut_statistique[i][1]);
           }
@@ -116,25 +161,16 @@ sect_statistique: any;
 // secteur
   barChartOptions: ChartOptions = {
     responsive: true,
-    
-    scales: {
-      yAxes: [{
-          ticks: {
-              suggestedMin: 0,
-              suggestedMax: this.Labels.length +4,
-          }
-      }]
-  }
   };
   barChartLabels: Label[] = this.Labels;
-  barChartType: ChartType = 'bar';
+  barChartType: ChartType = 'doughnut';
   barChartLegend = true;
   barChartPlugins = [];
   
 
   barChartData: ChartDataSets[] = [
     { data: this.Values, label: 'Nombre d incidents par secteur',
-     backgroundColor: "#3cba9f", }
+    backgroundColor: ["blue","grey","green","#FBD72B","cornflowerblue","orange","red","purple","black"], }
   ];
 
 // province
@@ -175,13 +211,15 @@ sect_statistique: any;
   };
   StatutChartLabels: Label[] = this.LabelsStatut;
   StatutbarChartType: ChartType = 'bar';
+  
   StatutChartLegend = true;
   StatutChartPlugins = [];
+  
 
   StatutChartData: ChartDataSets[] = [
     {
       data: this.ValuesStatut, label: 'Nombre d incidents par statut',
-      backgroundColor: ["#8e5ea2","#c45850","#3cba9f","#3e95cd","#c4ba9f","#e8c3b9"], }
+      backgroundColor: ["blue","grey","green","#FBD72B","cornflowerblue","orange","red"], }
   ];
   // type
   TypeChartOptions: ChartOptions = {

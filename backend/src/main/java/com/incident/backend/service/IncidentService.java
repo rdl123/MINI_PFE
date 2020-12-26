@@ -41,6 +41,7 @@ public interface IncidentService {
      List<Incident> findByStatutType(StatutType statutType);
     List<Incident> findByime(String ime);
 
+   // List findIncidentsPrem();
     List findIncidents();
     List findIncidentsProv();
     List  findIncidentsStatut();

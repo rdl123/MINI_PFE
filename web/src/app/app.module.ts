@@ -21,7 +21,7 @@ import { HighchartsChartComponent } from './highcharts-chart/highcharts-chart.co
 // Import angular-fusioncharts
 import { FusionChartsModule } from 'angular-fusioncharts';
 import { ModalModule} from 'ngx-bootstrap';
-
+import { MatPaginatorModule } from '@angular/material';
 
 
 // Import FusionCharts library
@@ -35,6 +35,10 @@ import { GestionUtilisateurComponent } from './gestion-utilisateur/gestion-utili
 import {UserService} from './services/UserService';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MapComponent } from './map/map.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon';
+import {MatButtonModule} from '@angular/material/button';
+
 
 // Use fcRoot function to inject FusionCharts library, and the modules you want to use
 FusionChartsModule.fcRoot(FusionCharts, Charts);
@@ -67,13 +71,16 @@ const routes: Routes = [
     LoginComponent,
     GestionUtilisateurComponent,
     SidebarComponent,
-    MapComponent,
-  ],
+    MapComponent
+    ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MatPaginatorModule,
+    MatButtonModule,
+    MatIconModule,
     RouterModule.forRoot(routes), HttpClientModule, FormsModule, ReactiveFormsModule,
-    ChartsModule, FusionChartsModule, ModalModule.forRoot()
+    ChartsModule, FusionChartsModule, ModalModule.forRoot(), BrowserAnimationsModule
 
   ],
   providers: [IncidentService, SecteurService, TypeService, ProvinceService, SecutityService, UserService],
