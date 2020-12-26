@@ -43,7 +43,7 @@ export class MyIncidentsPage implements OnInit {
     selectedSecteur1: any;
     SelectedType1: any;
     SelectedStatut1: any;
-    ime = '62d64d6309ff660f';
+    Myime = "5536ad1038d7ebbf";
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable
@@ -106,19 +106,26 @@ export class MyIncidentsPage implements OnInit {
   }
 
  getIncident() {
-    this.incidentService.findByIme(this.ime).subscribe(
+    this.incidentService.findByIme(this.Myime).subscribe(
         data => {
           this.data = data;
           this.Incident = this.data;
           console.log("here");
           console.log( "dezda" + this.Incident);
           this.ListIncident = this.data;
-         
-          console.log('getIncident', this.ListIncident);
+          var ReverseArray = [];
+          var length = this.ListIncident.length;
+          for(var i = length-1;i>=0;i--){
+              ReverseArray.push(this.ListIncident[i]);
+          }
+          this.ListIncident = ReverseArray;
+          console.log('ReversergetIncident', this.ListIncident);
           this.incidentService.listIncidents.next(this.ListIncident);
         }
     );
   }
+
+
   do1(evt) {
      console.log(evt);
 
@@ -174,6 +181,12 @@ export class MyIncidentsPage implements OnInit {
                 console.log(data);
                 this.data = data;
                 this.ListIncident = this.data;
+                var ReverseArray = [];
+                var length = this.ListIncident.length;
+                for(var i = length-1;i>=0;i--){
+                    ReverseArray.push(this.ListIncident[i]);
+                }
+                this.ListIncident = ReverseArray;
                 this.incidentService.listIncidents.next(this.ListIncident);
             }
         );
@@ -183,8 +196,14 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
-
+                    
                 }
             );
         }
@@ -193,8 +212,14 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
-
+                    
                 }
             );
         }
@@ -205,8 +230,15 @@ export class MyIncidentsPage implements OnInit {
                     this.data = data;
                     console.log(data);
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
-
+                    
+                    console.log(this.ListIncident);
                 }
             );
         }
@@ -216,6 +248,13 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
+                   
                     this.incidentService.listIncidents.next(this.ListIncident);
 
                 }
@@ -226,6 +265,13 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
+                    
                     this.incidentService.listIncidents.next(this.ListIncident);
 
                 }
@@ -237,6 +283,13 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
+                    
                     this.incidentService.listIncidents.next(this.ListIncident);
 
                 }
@@ -247,6 +300,13 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
+                   
                     this.incidentService.listIncidents.next(this.ListIncident);
                     console.log('oui', this.ListIncident);
                 }
@@ -258,7 +318,14 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
+                    
                     console.log('oui', this.ListIncident);
                 }
             );
@@ -269,7 +336,14 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
+                    
                     console.log('oui', this.ListIncident);
                 }
             );
@@ -279,7 +353,14 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
+                    
                     console.log('oui', this.ListIncident);
                 }
             );
@@ -290,7 +371,13 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
-
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
+                    this.incidentService.listIncidents.next(this.ListIncident);
                     console.log('oui', this.ListIncident);
 
                 }
@@ -301,8 +388,15 @@ export class MyIncidentsPage implements OnInit {
                 data => {
                     this.data = data;
                     this.ListIncident = this.data;
+                    var ReverseArray = [];
+                    var length = this.ListIncident.length;
+                    for(var i = length-1;i>=0;i--){
+                        ReverseArray.push(this.ListIncident[i]);
+                    }
+                    this.ListIncident = ReverseArray;
                     this.incidentService.listIncidents.next(this.ListIncident);
                     console.log('oui', this.ListIncident);
+                    
                 }
             );
         }
@@ -335,6 +429,12 @@ export class MyIncidentsPage implements OnInit {
         this.idProvinceChoisi = undefined ;
         this.idStatutChoisi = undefined;
         this.ListIncident = this.Incident;
+        var ReverseArray = [];
+        var length = this.ListIncident.length;
+        for(var i = length-1;i>=0;i--){
+            ReverseArray.push(this.ListIncident[i]);
+        }
+        this.ListIncident = ReverseArray;
         this.incidentService.listIncidents.next(this.ListIncident);
         this.selectedProvinceId = '';
         this.selectedProvince = '';

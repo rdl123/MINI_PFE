@@ -53,7 +53,7 @@
       </ion-select>
     </ion-item>
     <br>
-    <div class="pay_div">
+    <div class="pay_div" style="margin-right: 5%;">
       <ion-button (click)="FiltreIncident()" ><ion-icon  size="large" name="funnel"></ion-icon>Filter</ion-button>
       <ion-button  (click)="AnnulerFiltreIncident()"><ion-icon  size="large" name="close-circle-outline"></ion-icon>Annuler</ion-button>
     </div>
@@ -63,9 +63,10 @@
 
 <br>
 
-<div *ngFor="let item of ListIncident">
+<div *ngFor="let item of ListIncident" >
+  <div *ngIf="item.ime==Myime">
   <br>
-  <div class="cardcontainer">
+  <div class="cardcontainer" *ngIf="item.statut.id==1" style="border-top:5px solid red ;">
     <br>
     <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
       <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
@@ -92,17 +93,218 @@
           {{item.description.substring(0,60)}}...
         </div>
         
-        <div class="detail_btn">
+        <div class="detail_btn" >
           <ion-button  (click)="OpenModal(item)" >Details </ion-button>
         </div>
       </div>
       
-   
-    </div>
-    
-      
+    </div> 
   </div>
+  <div class="cardcontainer" *ngIf="item.statut.id==2" style="border-top:5px solid #FBD72B ;">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
+    <div style="display: flex;">
+      
+      <div style="width: 35%;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
+          
+        </div>
 
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn" >
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  <div class="cardcontainer" *ngIf="item.statut.id==3" style="border-top:5px solid green ;">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
+    <div style="display: flex;">
+      
+      <div style="width: 35%;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
+          
+        </div>
+
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn" >
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  <div class="cardcontainer" *ngIf="item.statut.id==4" style="border-top:5px solid orange ;">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
+    <div style="display: flex;">
+      
+      <div style="width: 35%;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
+          
+        </div>
+
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn" >
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  <div class="cardcontainer" *ngIf="item.statut.id==5" style="border-top:5px solid grey ;">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
+    <div style="display: flex;">
+      
+      <div style="width: 35%;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
+          
+        </div>
+
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn" >
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  <div class="cardcontainer" *ngIf="item.statut.id==6" style="border-top:5px solid blue ;">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
+    <div style="display: flex;">
+      
+      <div style="width: 35%;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
+          
+        </div>
+
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn" >
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  <div class="cardcontainer" *ngIf="item.statut.id==7" style="border-top:5px solid cornflowerblue ;">
+    <br>
+    <div style="margin-top: 10px;margin-bottom: 10px;text-align: center;">
+      <ion-label style="font-weight: bold;color: steelblue;">{{ item.secteur.secteur}} : {{ item.type.type }}</ion-label>
+    </div>
+    <div style="display: flex;">
+      
+      <div style="width: 35%;">
+        <ion-img class="image_style" [src]="item.photo"></ion-img>
+      </div>
+      <div style="margin-left:2%;width: 60%;">
+        
+        <div style="margin-top: 10px;margin-bottom: 10px;margin-right: 5px;">
+          <ion-label *ngIf="item.statut.id==1" style="font-weight: bold;color: red;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==3" style="font-weight: bold;color: green;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==4" style="font-weight: bold;color: orange;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==5" style="font-weight: bold;color: grey;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==6" style="font-weight: bold;color: blue;">{{item.statut.etat}}</ion-label>
+          <ion-label *ngIf="item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{item.statut.etat}}</ion-label>
+          
+        </div>
+
+        <div style="font-size: small;margin-right: 1%; ">
+          {{item.description.substring(0,60)}}...
+        </div>
+        
+        <div class="detail_btn" >
+          <ion-button  (click)="OpenModal(item)" >Details </ion-button>
+        </div>
+      </div>
+      
+    </div> 
+  </div>
+  </div>
 </div>
 
 </ion-content>
