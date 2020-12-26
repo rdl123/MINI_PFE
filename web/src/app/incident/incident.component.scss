@@ -16,7 +16,7 @@
     padding: 8%;
     border-width: 3px;
     border-style: outset;
-    border-color: gray;
+    border-color: rgb(255, 255, 255);
     border-radius: 10px;
   
   }
@@ -133,3 +133,7 @@
   table.cinereousTable tfoot td {
    // font-size: 16px;
   }
+
+.image{
+    cursor: pointer;
+}

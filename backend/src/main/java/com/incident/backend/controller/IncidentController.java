@@ -7,6 +7,11 @@ import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
+import org.springframework.data.querydsl.QPageRequest;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -14,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,6 +27,7 @@ import com.incident.backend.entity.Incident;
 import com.incident.backend.entity.Province;
 import com.incident.backend.entity.Secteur;
 import com.incident.backend.entity.Type;
+import com.incident.backend.repository.IncidentRepository;
 import com.incident.backend.entity.Etat;
 import com.incident.backend.service.IncidentService;
 import com.incident.backend.service.ProvinceService;
@@ -187,6 +194,19 @@ public class IncidentController {
         incidentService.save(incident);
         return "updated  success";
     }
+    
+    @Autowired
+    private IncidentRepository incidentRepository;
+    
+    
+    //10 premiers
+    @GetMapping(value = "/list")
+	Page<Incident> incidentsPageable(Pageable pageable) {
+		return incidentRepository.findAll(pageable);
+	}
+  
+ 
+   
 
     // les statistiques
     @GetMapping(value = "/secteur/Statistique")

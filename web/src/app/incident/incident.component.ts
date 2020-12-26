@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { IncidentService } from '../services/Incident.service';
 import { SecteurService } from '../services/Secteur.service';
 import { TypeService } from '../services/Type.service';
@@ -11,6 +11,9 @@ import { Secteur } from '../entities/Secteur';
 import { Province } from '../entities/Province';
 import { Type } from '../entities/Type';
 import { icon } from 'leaflet';
+import { MatPaginator } from '@angular/material';
+import { Statut } from '../entities/Statut';
+import { Router } from '@angular/router';
 
 declare  let L;
 declare var require: any;
@@ -42,18 +45,25 @@ export class IncidentComponent implements OnInit {
   idTyprChoisi: any;
   map: any;
   listIncident2: any;
+  listIncident21: any;
   selectedProvinceId: any;
   selectedType: any;
   selectedSecteur: any;
   selectedStatut: any;
   selectedSecteur2:any;
   div1:boolean=true;
+  page:number = 0;
+  size:number = 5;
+  incidents:Array<any>;
+  pages:Array<number>;
+  @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
 
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               private Typeservice: TypeService,
               private provinceService: ProvinceService,
-              private incidentService: IncidentService) {
+              private incidentService: IncidentService,
+              private router: Router) {
 
     
 
@@ -61,15 +71,36 @@ export class IncidentComponent implements OnInit {
     this.CustumFilter = new CustomFilter();
     this.CustumFilter.secteur = new Secteur();
     this.CustumFilter.province = new Province();
+    this.CustumFilter.statut = new Statut();
     this.CustumFilter.type = new Type();
     this.getProvince();
     this.getSecteur();
-    this.getIncident();
+   // this.getIncident();
 
+  }
+
+  setPage(event:any){
+    console.log('hahiya');
+    console.log(event);
+    console.log('ha ana');
+    this.page = event.pageIndex;
+    this.size = event.pageSize;
+    this.getpage();
   }
 
   ngOnInit() {
    
+
+    
+
+    this.incidentService.findAllIncident().subscribe(
+      data => {
+        this.listIncident21 = data;
+        console.log(this.listIncident21);
+        console.log(this.listIncident21.length);
+       this.marker(this.listIncident21);
+      });
+   this.getpage();
     const lat = 31.1728205;
     const lng = -7.3362482;
     const zoom = 6;
@@ -218,72 +249,72 @@ export class IncidentComponent implements OnInit {
 });
     for (let i = 0; i < ListIncident.length; i++) {
       
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "Bloqué") {
-        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: yellowIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+      if (ListIncident[i].statut.id ==1) {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: redIcon} ).addTo(this.map);
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
         );
         markers.push(marker);
       }
       
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "En cours de traitement") {
-        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: orangeIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
-        );
-        markers.push(marker);
-      } 
-
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "validé") {
-        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: greenIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
-        );
-        markers.push(marker);
-      } 
-
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "redirigé") {
-        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: blueIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
-        );
-        markers.push(marker);
-      } 
-
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "rejeté") {
-        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: redIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
-        );
-        markers.push(marker);
-      } 
-
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté'  && this.listIncident2[i].statut.etat == "declaré") {
+      if (ListIncident[i].statut.id ==2) {
         const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: yellowIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
         );
         markers.push(marker);
       } 
 
-      if (ListIncident[i].statut != 'declare' && this.listIncident2[i].statut != 'rejeté' && this.listIncident2[i].statut.etat == "Traité") {
+      if (ListIncident[i].statut.id ==3 ) {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: greenIcon} ).addTo(this.map);
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut.id ==4) {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: orangeIcon} ).addTo(this.map);
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut.id ==5) {
         const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: greyIcon} ).addTo(this.map);
-        marker.bindPopup('<b>Secteur:</b>' + ListIncident[i].secteur.secteur +
-          '</br> <b>Type: </b>' + ListIncident[i].type.type +
-        '</br> <b>Longitude:</b>' + ListIncident[i].longitude + '</br> <b>Latitude:</b>' + ListIncident[i].latitude +
-          '</br> <img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 50px;' + ' height: 50px;"  />'
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut.id ==6) {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: blueIcon} ).addTo(this.map);
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
+        );
+        markers.push(marker);
+      } 
+
+      if (ListIncident[i].statut.id ==7) {
+        const marker = L.marker([ListIncident[i].latitude, ListIncident[i].longitude], {icon: greyIcon} ).addTo(this.map);
+        marker.bindPopup('<img src="' + ListIncident[i].photo  + '" ' + 'style=" width: 150px;' + ' height: 150px;"  />'+
+          '</br> <b>Secteur:</b>' + ListIncident[i].secteur.secteur +
+          '</br> <b>Type: </b>' + ListIncident[i].type.type 
+          
         );
         markers.push(marker);
       } 
@@ -299,27 +330,48 @@ export class IncidentComponent implements OnInit {
   }
 
   isShow = false; 
+  isShow1 = false;
  
   toggleDisplay() {
-    this.isShow = !this.isShow;}
+    this.isShow = !this.isShow;
+    this.map.setView([31.1728205, -7.3362482], 6);}
   
-  getIncident() {
-    this.incidentService.findAllIncident().subscribe(
-      data => {
-        this.data = data;
-        this.Incident = this.data;
-        console.log( this.Incident);
-        this.ListIncident = this.data;
-        this.listIncident2 = this.data;
-       // console.log('getIncident', this.ListIncident);
-        this.marker(this.ListIncident);
+  // getIncident() {
+  //   this.incidentService.findAllIncident().subscribe(
+  //     data => {
+  //       this.data = data;
+  //       this.Incident = this.data;
+  //       console.log( this.Incident);
+  //       this.ListIncident = this.data;
+  //       this.listIncident2 = this.data;
+  //      // console.log('getIncident', this.ListIncident);
+  //       this.marker(this.ListIncident);
        
 
+  //     }
+  //   );
+  // } 
+
+  getpage(){
+    this.incidentService.incidentsPageable(this.page, this.size).subscribe(
+      data => {
+        //console.log(data);
+        this.data = data;
+        this.ListIncident = data['content'];
+        this.listIncident2 = data['content'];
+        this.pages = new Array(data['totalPages']);
+       // this.marker(this.ListIncident);
+      },
+      (error) => {
+        console.log(error.error.message);
       }
     );
   }
+
+
+
   do4(evt) {
-    this.CustumFilter.statut = LIST_STATUTS[evt.target.value];
+    this.CustumFilter.statut.etat = LIST_STATUTS[evt.target.value];
     if(LIST_STATUTS[evt.target.value]=="validé")
             this.idStatutChoisi = 3;
     if(LIST_STATUTS[evt.target.value]=="en cours de traitement")
@@ -335,6 +387,7 @@ export class IncidentComponent implements OnInit {
     if(LIST_STATUTS[evt.target.value]=="rejeté")
             this.idStatutChoisi = 5;
     console.log(this.idStatutChoisi);
+    this.CustumFilter.statut.id = this.idStatutChoisi;
   }
   do2(evt) {
     this.Secteurservice.findSecteurById(evt.target.value).subscribe( data => {
@@ -372,7 +425,15 @@ export class IncidentComponent implements OnInit {
 
   }
 
+  oneIncident(item){
+    console.log(item);
+    console.log(item.latitude);
+    this.isShow = !this.isShow;
+    this.map.setView([item.latitude, item.longitude], 14);
+  }
+
   FiltreIncident() {
+    this.isShow1 = !this.isShow1;
     console.log(this.idTyprChoisi, this.idSecteurChoisi, this.idProvinceChoisi, this.idStatutChoisi);
     if (this.idTyprChoisi != undefined && this.idSecteurChoisi != undefined && this.idProvinceChoisi != undefined && this.idStatutChoisi != undefined) {
       this.deleteMarker();
@@ -382,6 +443,7 @@ export class IncidentComponent implements OnInit {
           this.data = data;
           this.ListIncident = this.data;
           this.marker(this.ListIncident);
+          console.log(this.marker(this.ListIncident));
         }
       );
     } else {
@@ -403,7 +465,7 @@ export class IncidentComponent implements OnInit {
             this.data = data;
             this.ListIncident = this.data;
             console.log(this.ListIncident);
-            this.marker(this.ListIncident);
+            this.marker(this.listIncident2);
           }
         );
       }
@@ -541,6 +603,7 @@ export class IncidentComponent implements OnInit {
 
   }
   AnnulerFiltreIncident() {
+    this.isShow1 = !this.isShow1;
     this.selectedProvinceId = null;
     this.selectedType = null;
     this.selectedSecteur = null;
@@ -549,8 +612,12 @@ export class IncidentComponent implements OnInit {
     this.idSecteurChoisi = undefined ;
     this.idProvinceChoisi = undefined ;
     this.idStatutChoisi = undefined;
-    this.ListIncident = this.Incident;
-    this.marker(this.ListIncident);
+    this.ListIncident = this.listIncident2;
+    this.deleteMarker();
+    this.marker(this.listIncident21);
+    this.CustumFilter.secteur = undefined;
+    this.router.navigateByUrl('/incident');
+    
 
 
   }

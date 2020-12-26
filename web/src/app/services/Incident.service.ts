@@ -91,6 +91,10 @@ findByStatutSecteurType( statutSecteurType : StatutSecteurType){
   return this.http.post(API_URL +  '/Incident/queryStatutTypeSecteur' , statutSecteurType );
 }
 
+incidentsPageable(page: number, size: number){
+  return this.http.get(API_URL+'/Incident/list?page='+page+'&size='+size+'&sort=date');
+}
+
 }
     
 

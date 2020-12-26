@@ -14,8 +14,6 @@
                  <option  [value]=2 >Traité </option>
                   <option  [value]=3  >Bloqué </option>
                    <option  [value]=4  >redirigé</option>
-                   <option  [value]=5  >rejeté</option>
-                   <option  [value]=6  >declaré</option>
          </select>
 
 
@@ -41,14 +39,14 @@
                  <option  *ngFor="let p of ListProvince" [value]="p.id">{{p.province}}</option>
          </select>
          
-         <button type="submit" class="monBoutton1 " style="margin:3px ;"><i class="fa fa-search" aria-hidden="true"></i>      Chercher</button>
+         <button type="submit" class="monBoutton1 " style="margin:3px ;"><i class="fa fa-search" aria-hidden="true"></i>Chercher</button>
        </div>
          
        
  </form> 
 <p></p>
 <button   class="monBoutton "  (click)="AnnulerFiltreIncident()">Annuler le filtre</button>
-<button   class="monBoutton2" (click) = toggleDisplay() > show / Hide map</button>
+<button   class="monBoutton2" (click) = toggleDisplay() > Afficher / Masquer carte</button>
 <p></p>
 
 
@@ -57,36 +55,53 @@
     <thead>
     <tr>
     <th>Photo</th>
+    <th>Desciption</th>
+    <th>Secteur</th>
+    <th>Type</th>
+    <th>Province</th>
     <th>Date</th>
     <th>Statut</th>
-    <th>Secteur</th>
-    <th>Province</th>
-    <th>Type</th>
-    <th>Desciption</th>
+    
+    
+    
     </tr>
     </thead>
     
     <tbody>
     <tr *ngFor="let item of ListIncident">
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' "><img class="image" [src]="item.photo"></td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.date }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==1" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==2" style="font-weight: bold;color: orange;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==4" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==5" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==7" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==6" style="font-weight: bold;color: darkmagenta;">{{ item.statut.etat }}</td>
-    
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.secteur.secteur }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.province.province }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.type.type }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' "><img class="image" [src]="item.photo" (click)="oneIncident(item)"></td>
     <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.description }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.secteur.secteur }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.type.type }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.province.province }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19)  }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==1" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==2" style="font-weight: bold;color: #FBD72B;;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==4" style="font-weight: bold;color: orange;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==7" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==6" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
+    
+    
+    
+    
+    
     </tr>
     
     
     </tbody>
     </table>
+      <ul [hidden] = "isShow1" class="nav nav-pills">
+        <mat-paginator  [length]="100"
+         [pageSize]="size"
+        [pageSizeOptions]="[5, 10, 25, 100]"
+        (page)="pageEvent = setPage($event)"></mat-paginator>
+      </ul>
+   
+     
+    
+     
  </div>
 </div>
 

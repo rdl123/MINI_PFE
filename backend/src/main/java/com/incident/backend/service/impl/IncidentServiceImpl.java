@@ -275,7 +275,12 @@ public class IncidentServiceImpl implements IncidentService {
     public List<Incident> findByime(String ime) {
         return incidentRepository.findByime(ime) ;
     }
-
+/*
+    @Override
+    public List findIncidentsPrem() {
+        return incidentRepository.findIncidentsPrem(int page);
+   }*/
+    
     @Override
     public List findIncidents() {
          return incidentRepository.findIncidents();

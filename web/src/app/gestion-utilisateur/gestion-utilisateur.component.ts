@@ -29,6 +29,7 @@ listProf = [];
   errusername: string;
   errfullname: string;
   item: any;
+  selectedsecteur : Secteur;
   errpassword: string;
   i: number;
   selectedSecteur2: any;
@@ -47,7 +48,7 @@ listProf = [];
               private modalService: BsModalService, private router: Router,
               private Secteurservice: SecteurService, private formBuilder: FormBuilder) {
     this.user = new User();
-    this.user.secteurUser = new Secteur();
+   // this.user.secteurUser = new Secteur();
     this.getSecteur();
     this.i = 0;
   }
@@ -82,8 +83,10 @@ listProf = [];
     this.Secteurservice.findSecteurById(evt.target.value).subscribe( data => {
       this.idSecteurChoisi = evt.target.value;
       this.data = data;
-      this.user.secteurUser.id = this.data.id;
-      this.user.secteurUser.secteur = this.data.secteur;
+      //this.user.secteurUser.id = this.data.id;
+      //this.user.secteurUser.secteur = this.data.secteur;
+      console.log(this.data);
+      this.selectedsecteur=this.data;
 
     });
   }
@@ -133,6 +136,7 @@ listProf = [];
              this.user.organisme = null;
              this.user.password = null;
              this.user.fullname = null;
+             this.ngOnInit();
       },
       err => {
 
@@ -151,7 +155,15 @@ listProf = [];
     this.user.role=new Role();
     this.user.role.id = 2;
     this.user.role.role =  'professionnel';
+
+    this.user.secteurUser = new Secteur();
+    this.user.secteurUser = this.selectedsecteur ;
+    this.item.secteur = this.selectedsecteur ;
+    this.item.secteurUser = this.selectedsecteur;
+
+    console.log(this.selectedsecteur);
     this.modalRef.hide();
+
     console.log(this.item);
 
     this.userService.updateuser(this.item).subscribe(

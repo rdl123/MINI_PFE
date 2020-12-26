@@ -2,6 +2,7 @@ package com.incident.backend.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Page;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import org.springframework.data.jpa.repository.Query;
@@ -18,8 +19,11 @@ public interface IncidentRepository extends JpaRepository<Incident,Long>, JpaSpe
     List<Incident> findByStatut(Etat etat);
     List<Incident> findByProvince(Province province);
     List<Incident> findByType(Type type);
-    List<Incident> findByime(String ime);
+    List<Incident> findByime(String ime);    
+    
 
+
+    
     @Query("select i.secteur.secteur,count(*) from Incident i  join Secteur s  on i.secteur.id = s.id group by i.secteur.secteur")
     List  findIncidents();
 
