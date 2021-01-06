@@ -69,19 +69,19 @@
     
     <tbody>
     <tr *ngFor="let item of ListIncident">
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' "><img class="image" [src]="item.photo" (click)="oneIncident(item)"></td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.description }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.secteur.secteur }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.type.type }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.province.province }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' ">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19)  }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==1" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==2" style="font-weight: bold;color: #FBD72B;;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==4" style="font-weight: bold;color: orange;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==7" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==6" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité'  "><img class="image" [src]="item.photo" (click)="oneIncident(item)"></td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' ">{{ item.description }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' ">{{ item.secteur.secteur }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' ">{{ item.type.type }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité'">{{ item.province.province }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité'">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19)  }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==1" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==4" style="font-weight: bold;color: rgb(255, 81, 0);">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==7" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==6" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
     
     
     
@@ -106,3 +106,36 @@
 </div>
 
 <div  [hidden] = "!isShow" id="map" style="flex: 1; padding: 1em;"></div>
+<div [hidden] = "!isShow2" class="card" *ngIf="Incident1" >
+  <img class="card-img-top" [src]="Incident1.photo" alt="" class="image1" style=" width: 95%;height: 35%;">
+  <div class="card-body"  *ngIf="Incident1.statut.id==1" style="font-weight: bold;color:red;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==2" style="font-weight: bold;color: #FBD72B;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==3" style="font-weight: bold;color: green;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==4" style="font-weight: bold;color: rgb(255, 81, 0);" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==5" style="font-weight: bold;color: grey;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==6" style="font-weight: bold;color: cornflowerblue;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==7" style="font-weight: bold;color: blue;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item"> <label for="">Date : </label> {{Incident1.date.substring(0,10) +" "+ Incident1.date.substring(11,19)  }}</li>
+    <li class="list-group-item"><label for="">secteur : </label>{{Incident1.secteur.secteur}}</li>
+    <li class="list-group-item"><label for="">Province : </label>{{Incident1.province.province}}</li>
+    <li class="list-group-item" *ngIf="Incident1"><label for="">Description : </label>{{Incident1.description}}</li>
+  </ul>
+  
+ 
+  
+</div>

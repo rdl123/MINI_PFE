@@ -161,9 +161,23 @@ sect_statistique: any;
 // secteur
   barChartOptions: ChartOptions = {
     responsive: true,
+    
+      plugins: {
+        datalabels: {
+          display: true,
+          align: 'bottom',
+          backgroundColor: '#ccc',
+          borderRadius: 3,
+          font: {
+            size: 18,
+          }
+        },
+      }
+    
   };
+ 
   barChartLabels: Label[] = this.Labels;
-  barChartType: ChartType = 'doughnut';
+  barChartType: ChartType = 'pie';
   barChartLegend = true;
   barChartPlugins = [];
   
@@ -172,6 +186,7 @@ sect_statistique: any;
     { data: this.Values, label: 'Nombre d incidents par secteur',
     backgroundColor: ["blue","grey","green","#FBD72B","cornflowerblue","orange","red","purple","black"], }
   ];
+  
 
 // province
   ProvChartOptions: ChartOptions = {
