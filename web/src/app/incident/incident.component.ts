@@ -57,6 +57,7 @@ export class IncidentComponent implements OnInit {
   incidents:Array<any>;
   pages:Array<number>;
   @ViewChild(MatPaginator, {static: false}) paginator: MatPaginator;
+  Incident1: any;
 
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
@@ -331,9 +332,11 @@ export class IncidentComponent implements OnInit {
 
   isShow = false; 
   isShow1 = false;
+  isShow2 = false;
  
   toggleDisplay() {
     this.isShow = !this.isShow;
+    this.isShow2 = false;
     this.map.setView([31.1728205, -7.3362482], 6);}
   
   // getIncident() {
@@ -428,7 +431,10 @@ export class IncidentComponent implements OnInit {
   oneIncident(item){
     console.log(item);
     console.log(item.latitude);
+    this.Incident1=item;
+    console.log(this.Incident1);
     this.isShow = !this.isShow;
+    this.isShow2 = !this.isShow2;
     this.map.setView([item.latitude, item.longitude], 14);
   }
 

@@ -48,7 +48,7 @@ listProf = [];
               private modalService: BsModalService, private router: Router,
               private Secteurservice: SecteurService, private formBuilder: FormBuilder) {
     this.user = new User();
-   // this.user.secteurUser = new Secteur();
+
     this.getSecteur();
     this.i = 0;
   }
@@ -156,10 +156,13 @@ listProf = [];
     this.user.role.id = 2;
     this.user.role.role =  'professionnel';
 
-    this.user.secteurUser = new Secteur();
+    if(this.selectedsecteur != null){
+      this.user.secteurUser = new Secteur();
     this.user.secteurUser = this.selectedsecteur ;
     this.item.secteur = this.selectedsecteur ;
     this.item.secteurUser = this.selectedsecteur;
+
+    }
 
     console.log(this.selectedsecteur);
     this.modalRef.hide();
@@ -186,8 +189,6 @@ listProf = [];
   openModal1(template: TemplateRef<any>, item) {
     this.modalRef = this.modalService.show(template);
     this.item = item;
-    this.selectedSecteur2 = this.item.secteur.secteur;
-    // this.item.secteurUser.secteur;
 
     console.log(this.selectedSecteur2);
   }
