@@ -1,0 +1,7 @@
+{
+  "name": "MiniPFE",
+  "integrations": {
+    "cordova": {}
+  },
+  "type": "angular"
+}

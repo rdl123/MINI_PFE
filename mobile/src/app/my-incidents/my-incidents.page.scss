@@ -1,0 +1,88 @@
+#customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+  #customers tr:hover {background-color: #ddd;}
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:royalblue;
+    color: white;
+  }
+.container{
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: white;
+    border-top: 5px solid #09aacc;
+    box-shadow : 0px 1px 10px rgba(98,140,255,0.5);
+    width: 90%;
+
+}
+.cardcontainer{
+    margin-top: 10px;
+    margin-left: 5%;
+    background-color: white;
+    box-shadow : 0px 1px 10px rgba(98,140,255,0.5);
+    width: 90%;
+
+}
+
+.detail_btn{
+  display:flex;
+  justify-content: left;
+  margin: 10px 0px 10px 0px;
+  margin-left:50%;
+  margin-right: 0%;
+  margin-bottom: 20px;
+  margin-top: 10px;
+  ion-button{
+      // text-transform: capitalize;
+      font-weight: 300;
+      --background:#09aacc;
+      --border-radius:7px;
+      --box-shadow:none;
+  }
+  ion-icon{
+      margin-left:2px;
+      margin-right:8px;
+  }
+}
+.pay_div{
+  //display:flex;
+  //justify-content: left;
+  display: flex;
+  justify-content: flex-end;
+  margin: 10px 10px 10px 10px;
+  margin-bottom: 0px;
+  //margin: 10px 0px 10px 0px;
+ // margin-left:25%;
+  //margin-right: 0%;
+  //margin-bottom: 20px;
+  ion-button{
+      // text-transform: capitalize;
+      font-weight: 300;
+      --background:#09aacc;
+      --border-radius:7px;
+      --box-shadow:none;
+  }
+  ion-icon{
+      margin-left:2px;
+      margin-right:8px;
+  }
+}
+.image_style{
+  width:100%;
+  height:100px;
+  margin-top: 0%;
+}
