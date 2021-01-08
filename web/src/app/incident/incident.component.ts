@@ -622,7 +622,7 @@ export class IncidentComponent implements OnInit {
     this.deleteMarker();
     this.marker(this.listIncident21);
     this.CustumFilter.secteur = undefined;
-    this.router.navigateByUrl('/incident');
+    // this.router.navigateByUrl('/incident');
     
 
 

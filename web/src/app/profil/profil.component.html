@@ -1,0 +1,153 @@
+<!-- <div class="row body">
+
+  <app-sidebar> </app-sidebar>
+</div>
+<div style="padding-left: 210px; padding-top: 100px; margin-left: 5%;">
+  
+
+Vos informations sont :
+
+Fullname : {{currentUser.fullname}} 
+
+{{currentUser.password}}
+{{currentUser.username}}
+{{currentUser.organisme}}
+
+<form [formGroup]="formData">
+    <label style="text-align: center">Nom complet  :</label>
+    <input type="text" value= {{currentUser.fullname}}
+           >
+           <p></p>
+           
+           <label style="text-align: center">Email :</label>
+    <input type="text" value= {{currentUser.email}}
+           >
+           <p></p>
+           <label style="text-align: center">Mot de Passe  :</label>
+           <input type="text" value= {{currentUser.password}}
+                  >
+                  <p></p>
+                  <label style="text-align: center">Organisme</label>
+    <input type="text" value= {{currentUser.organisme}}
+           >
+           
+           <p></p>
+           <label style="text-align: center">Telephone :</label>
+    <input type="text" value= {{currentUser.telephone}}
+           >
+           <p></p>
+    <button type="submit"   class="btn btn-default" (click)="update()"> Valider  </button>
+    </form>
+  
+</div> -->
+
+
+
+<div class="row body">
+
+    <app-sidebar> </app-sidebar>
+  </div>
+  <div style="padding-left: 210px; padding-top: 100px;">
+  
+  <div style="padding-left: 210px;">
+  <br>  </div>
+  <p></p>
+  
+  <ng-template #template>
+    <div class="modal-header">
+      <button type="button" class="close pull-right" area-label="'close" (click)="hide()">
+        <span area-hidden="true">&times;</span>
+      </button>
+      
+    </div>
+    <p></p>
+  </ng-template>
+  <ng-template #template1>
+    <div class="modal-header">
+      <button type="button" class="close pull-right" area-label="'close" (click)="modalRef.hide()">
+        <span area-hidden="true">&times;</span>
+      </button>
+  
+    </div>
+    <div class="modal-body">
+      <form [formGroup]="formData">
+        <label style="text-align: center">Nom complet  :</label>
+        <input type="text"  required class="form-control"  formControlName="fullname" placeholder="fullname"
+               [(ngModel)]="item.fullname" >
+        <label style="text-align: center;color: red" >{{errfullname}}</label>
+        <p></p>
+        <label style="text-align: center"> organisme :</label>
+        <input type="text"  id="organisme1" class="form-control"  formControlName="organisme" placeholder="organisme" [(ngModel)]="item.organisme">
+  
+        <p></p>
+        <label style="text-align: center"> email :</label>
+        <input type="text"  id="email1" class="form-control"  formControlName="email" placeholder="email" [(ngModel)]="item.email">
+  
+        <p></p>
+        <label style="text-align: center"> Mot de Passe :</label>
+        <input type="password" required id="password1" class="form-control"  formControlName="password" placeholder="password"
+             [(ngModel)]="item.password" >
+        <p></p>
+        <label style="text-align: center"> telephone :</label>
+        <input type="text"  id="telephone1" class="form-control"  formControlName="telephone" placeholder="telephone" [(ngModel)]="item.telephone">
+  
+        <p></p>
+        <label style="margin:1px ;">Secteur : </label>
+        <select   name="Secteur"   (change)="do2($event)"  class="form-control"  >
+          <option  [value]=null  > Selectionner un secteur </option>
+          <option  *ngFor="let s of ListSecteur" [value]="s.id">{{s.secteur}}</option>
+  
+        </select>
+        <p></p>
+        <button type="submit"   class="btn btn-default" (click)="update()"> Valider  </button>
+  
+  
+      </form>
+  
+    </div>
+  
+  </ng-template>
+  
+  <div class="container">
+    <div class="panel panel-primary">
+      <div class="panel-heading">
+        <h5>Note tes modifications</h5>
+        
+      </div>
+      <div class="panel-body">
+  
+        <table class="table table-condensed table-hover">
+          <thead>
+          <tr>
+            <th scope="col" > Nom  </th>
+            <th scope="col"> Organisme </th>
+            <th scope="col" > E-mail </th>
+            <th scope="col" > Mot de passe </th>
+            <th scope="col" > Telephone  </th>
+            <th scope="col" > Secteur </th>
+  
+          </tr>
+          </thead>
+          <tbody>
+          <tr *ngFor = "let item of listProf">
+            <td scope="row">{{ item.fullname }}</td>
+            <td scope="row">{{ item.organisme }}</td>
+            <td scope="row">{{ item.email }}</td>
+            <td scope="row">{{ item.password }}</td>
+            <td scope="row">{{ item.telephone }}</td>
+            <td scope="row">{{ item.secteurUser.secteur }}</td>
+            <button type="submit" class="monBoutton1" (click)="openModal1(template1,item)">editer</button>
+  
+  
+          </tr>
+          </tbody>
+        </table>
+        <!-- <div>
+          <pagination-controls id="listing_pagination" maxSize="5" directionLinks="true" (pageChange)="page = $event"></pagination-controls>
+        </div> -->
+      </div>
+  
+  
+    </div>
+  </div>
+  </div>
