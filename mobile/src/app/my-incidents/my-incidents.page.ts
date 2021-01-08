@@ -43,7 +43,7 @@ export class MyIncidentsPage implements OnInit {
     selectedSecteur1: any;
     SelectedType1: any;
     SelectedStatut1: any;
-    Myime = "5536ad1038d7ebbf";
+    Myime = this.device.uuid;
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable

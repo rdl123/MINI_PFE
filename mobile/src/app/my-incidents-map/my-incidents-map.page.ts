@@ -95,7 +95,7 @@ export class MyIncidentsMapPage implements OnInit {
         // In setView add latLng and zoom
        //this.map = new Map('mapId').setView([ 31.1728205, -7.3362482], 5);
 
-       var layer1 = L.tileLayer('http://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+       var layer1 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
            //
            attribution: 'edupala.com © ionic LeafLet',
        })
@@ -121,37 +121,37 @@ export class MyIncidentsMapPage implements OnInit {
            var marker;
            console.log("statut est  : " + this.ListIncident[i].statut.id );
 
-           if(this.ListIncident[i].statut.id==1 && this.ListIncident[i].ime == "5536ad1038d7ebbf" ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==1 && this.ListIncident[i].ime == this.device.uuid){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: redIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
       );}
-           if(this.ListIncident[i].statut.id==2  && this.ListIncident[i].ime =="5536ad1038d7ebbf"){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==2  && this.ListIncident[i].ime ==this.device.uuid){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: yellowIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
       );}
-           if(this.ListIncident[i].statut.id==3  && this.ListIncident[i].ime == "5536ad1038d7ebbf" ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greenIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==3  && this.ListIncident[i].ime == this.device.uuid ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greenIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
       );}
-           if(this.ListIncident[i].statut.id==4  && this.ListIncident[i].ime =="5536ad1038d7ebbf" ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==4  && this.ListIncident[i].ime ==this.device.uuid ){marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: orangeIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
       );}
-           if(this.ListIncident[i].statut.id==5  && this.ListIncident[i].ime =="5536ad1038d7ebbf" ){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greyIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==5  && this.ListIncident[i].ime ==this.device.uuid){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: greyIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
       );}
-           if(this.ListIncident[i].statut.id==6  && this.ListIncident[i].ime =="5536ad1038d7ebbf"){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==6  && this.ListIncident[i].ime ==this.device.uuid){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: blueIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
       );}
-           if(this.ListIncident[i].statut.id==7  && this.ListIncident[i].ime == "5536ad1038d7ebbf" ){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: cornblueIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
+           if(this.ListIncident[i].statut.id==7  && this.ListIncident[i].ime == this.device.uuid ){ marker = L.marker([this.ListIncident[i].latitude, this.ListIncident[i].longitude], {icon: cornblueIcon}).addTo(this.map);            marker.bindPopup('</br> <img src="' + this.ListIncident[i].photo  + '" ' + 'style=" display: block;margin-left: auto;margin-right: auto; width: 180px;' + ' height: 150px;border-radius:3%"  />'+
            '</br><b style="color:#5ccca7">Secteur : </b>' + this.ListIncident[i].secteur.secteur +
           '</br> <b style="color:#5ccca7">Type : </b>' + this.ListIncident[i].type.type +
           '</br> <b style="color:#5ccca7">Statut : </b>' + this.ListIncident[i].statut.etat
