@@ -1,12 +1,51 @@
+
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar  color="primary">
     <ion-buttons slot="start">
       <ion-menu-button ></ion-menu-button>
     </ion-buttons>
-    <ion-title>Ajouter un incident</ion-title>
-  </ion-toolbar></ion-header>
+    <ion-title> Detail des incidents  </ion-title>
+    <ion-button size="small" slot="end"  (click)="CloseModal()"> Fermer </ion-button>
+  </ion-toolbar>
 
-<ion-content>
+</ion-header>
+<style>
+  table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+  }
+  th, td {
+    padding: 5px;
+    text-align: left;
+  }
+</style>
+
+<style>
+  #customers {
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  #customers td, #customers th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+
+  #customers tr:nth-child(even){background-color: #f2f2f2;}
+
+  #customers tr:hover {background-color: #ddd;}
+
+  #customers th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color:royalblue;
+    color: white;
+  }
+</style>
+
+<ion-content >
   <div class="container">
     <form #f="ngForm" >
 
@@ -20,9 +59,9 @@
       </ion-item>
 
       <ion-item *ngIf="Incident.secteur.secteur!=undefined" lines="none">
-        <ion-label  *ngIf="Incident.secteur.secteur!=undefined"  style="color: steelblue;">Type : </ion-label>
-        <ion-select placeholder="Choisissez  un type" (ionChange)="do($event)"   *ngIf="Incident.secteur.secteur!=undefined"  [value]="selectedType" >
-          <ion-select-option  *ngFor="let val of this.ListType" [value]="val.id" > {{ val.type}}</ion-select-option>
+        <ion-label  style="color: steelblue;">Type : </ion-label>
+        <ion-select placeholder="Choisissez  un type" (ionChange)="do($event)" id="type" value="valeur" [value]="selectedType" >
+          <ion-select-option  *ngFor="let valeur of this.ListType" [value]="valeur.id" multiple class="form-control" > {{valeur.type}}</ion-select-option>
         </ion-select>
       </ion-item>
   
@@ -66,9 +105,7 @@
       
       
       <div class="pay_div" center style="margin-right: 5%;" >
-        <ion-button (click)="addIncident()" ><ion-icon  size="default" name="checkbox-outline"></ion-icon>Déclarer</ion-button>
-     
-        <ion-button  (click)="AnnulerIncident()"><ion-icon  size="default" name="close-circle-outline"></ion-icon>Retour</ion-button>
+        <ion-button (click)="addIncident()" ><ion-icon  size="default" name="checkbox-outline"></ion-icon>Modifier</ion-button>
       </div>
       <br>
       
@@ -77,5 +114,5 @@
        
     </form>
   </div>
-
 </ion-content>
+

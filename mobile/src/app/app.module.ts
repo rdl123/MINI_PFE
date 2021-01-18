@@ -15,13 +15,14 @@ import {IncidentService} from './services/Incident.service';
 import {ProvinceService} from './services/province.service';
 import { Camera, CameraOptions } from '@ionic-native/camera/ngx';
 import {ModalpopupPageModule} from './modalpopup/modalpopup.module';
+import {ModifyModelPageModule} from './modifymodal/modifymodal.module';
 import {Device} from '@ionic-native/device/ngx';
 import { Base64 } from '@ionic-native/base64/ngx';
 //import { HereMapComponent } from "../app/here-map/here-map.component";
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
-  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ModalpopupPageModule],
+  imports: [BrowserModule, IonicModule.forRoot(), AppRoutingModule, HttpClientModule, ModalpopupPageModule,ModifyModelPageModule],
   providers: [
     Base64,SecteurService, TypeService , Geolocation, IncidentService, ProvinceService,
     StatusBar, Camera, Device,

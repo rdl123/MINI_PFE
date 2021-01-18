@@ -15,6 +15,7 @@ import {Map} from 'leaflet';
 import {Camera} from '@ionic-native/camera/ngx';
 import {ModalController} from '@ionic/angular';
 import {ModalpopupPage} from '../modalpopup/modalpopup.page';
+import {ModifymodalPage} from '../modifymodal/modifymodal.page';
 import {NgForm} from '@angular/forms';
 import {Device} from '@ionic-native/device/ngx';
 declare  let L;
@@ -43,7 +44,7 @@ export class MyIncidentsPage implements OnInit {
     selectedSecteur1: any;
     SelectedType1: any;
     SelectedStatut1: any;
-    Myime = this.device.uuid;
+    Myime =  this.device.uuid;
   constructor(private httpClient: HttpClient,
               private Secteurservice: SecteurService,
               // tslint:disable-next-line:no-shadowed-variable
@@ -62,10 +63,14 @@ export class MyIncidentsPage implements OnInit {
     this.getSecteur();
 
     this.getProvince();
-    this.getIncident();
+    
     console.log(this.selectedProvinceId);
+    console.log('Device UUID is: ' + this.device.uuid);
   }
-
+  ionViewWillEnter() {
+    //window.location.reload();
+    this.getIncident();
+    }
   ngOnInit() {
       console.log(this.selectedProvinceId);
   }
@@ -73,6 +78,16 @@ export class MyIncidentsPage implements OnInit {
         console.log(item.id);
         const modal = await this.modalController.create({
             component: ModalpopupPage,
+            componentProps: {
+                id: item.id
+            }
+        });
+        return await modal.present();
+    }
+    async ModifyModal(item) {
+        console.log(item.id);
+        const modal = await this.modalController.create({
+            component: ModifymodalPage,
             componentProps: {
                 id: item.id
             }

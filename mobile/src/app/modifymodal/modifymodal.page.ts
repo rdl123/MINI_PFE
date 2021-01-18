@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ModalController, NavParams} from '@ionic/angular';
 import {SecteurService} from '../services/secteur.service';
 import {HttpClient} from '@angular/common/http';
 import {API_URL} from '../utils/constants';
@@ -15,13 +16,13 @@ import { Device } from '@ionic-native/device/ngx';
 import {ProvinceService} from '../services/province.service';
 import {Base64} from '@ionic-native/base64/ngx';
 import { NavController } from '@ionic/angular';
-@Component({
-  selector: 'app-add-incident',
-  templateUrl: './add-incident.page.html',
-  styleUrls: ['./add-incident.page.scss'],
-})
 
-export class AddIncidentPage implements OnInit {
+@Component({
+  selector: 'app-modalpopup',
+  templateUrl: './modifymodal.page.html',
+  styleUrls: ['./modifymodal.page.scss'],
+})
+export class ModifymodalPage implements OnInit {
   private win: any = window;
   Incident: Incident;
   ListSecteur: any;
@@ -46,6 +47,8 @@ export class AddIncidentPage implements OnInit {
     latitude: any;
     description: any;
     photo: any;
+    variableIteam:any;
+    ListeChoisi:any;
   constructor( private base64:Base64,
               private http: HttpClient,
               private Secteurservice: SecteurService,
@@ -53,9 +56,15 @@ export class AddIncidentPage implements OnInit {
               private Typeservice: TypeService, private Geolocation: Geolocation, private  IncidentService: IncidentService,
               private camera: Camera, private alertCtrl: AlertController,
               private provinceService: ProvinceService,
+              
+              private device: Device,
+              private modalController: ModalController,
+              private params: NavParams,
+              private incidentService: IncidentService,
               private navController : NavController,
-              private device: Device
             ) {
+    this.variableIteam = params.get('id');
+    this. getList();
     this.Incident = new Incident();
     this.Incident.secteur = new Secteur();
     this.Incident.type = new Type();
@@ -235,7 +244,7 @@ export class AddIncidentPage implements OnInit {
 
     }*/
     addIncident() {
-        this.Incident.ime = this.device.uuid;
+        this.Incident.ime =  this.device.uuid;
         console.log('Device UUID is: ' + this.device.uuid);
         this.http.post(API_URL + '/Incident/add', this.Incident).subscribe(
         data => {
@@ -244,6 +253,13 @@ export class AddIncidentPage implements OnInit {
         }
       
     );
+
+    //navigate
+    this.CloseModal();
+    //this.navController.navigateRoot(['/menu/filter/my-incidents']);
+     
+    
+
     }
     AnnulerIncident() {
         /*this.Incident.description = null;
@@ -263,14 +279,34 @@ export class AddIncidentPage implements OnInit {
         this.longitude = null;
         this.latitude = null;
         this.description = null;
-        this.navController.navigateRoot(['/menu/filter/my-incidents']);
-        
+
 
     }
 
 
 
-
-
-
+ 
+    getList()
+    {
+        this.incidentService.findIncidentById(this.variableIteam).subscribe(data =>{
+          console.log(data);
+          this.ListeChoisi= data;
+          this.selectedSecteur = this.ListeChoisi.secteur.id;
+          this.getType(this.ListeChoisi.secteur.id);
+          
+          console.log(this.ListeChoisi.type.id)
+          this.selectedType = this.ListeChoisi.type.id; 
+          this.Incident.latitude = this.ListeChoisi.latitude; 
+          this.Incident.longitude = this.ListeChoisi.longitude; 
+          this.Incident.province = this.ListeChoisi.province; 
+          this.Incident.photo = this.ListeChoisi.photo; 
+          this.Incident.description = this.ListeChoisi.description;
+          this.Incident.type = this.ListeChoisi.type;
+        });
+    }
+    CloseModal() {
+        this.modalController.dismiss();
+        window.location.reload();
+        
+    }
 }
