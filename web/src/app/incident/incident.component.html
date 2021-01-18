@@ -99,7 +99,7 @@
         (page)="pageEvent = setPage($event)"></mat-paginator>
       </ul>
    
-     
+      
     
      
  </div>
@@ -107,6 +107,12 @@
 
 <div  [hidden] = "!isShow" id="map" style="flex: 1; padding: 1em;"></div>
 <div [hidden] = "!isShow2" class="card" *ngIf="Incident1" >
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item" *ngIf="Incident1"><label for="">Description : </label>{{Incident1.description}}</li>
+  </ul>
+</div>
+<div [hidden] = "!isShow2" class="card pipi" *ngIf="Incident1" >
+  
   <img class="card-img-top" [src]="Incident1.photo" alt="" class="image1" style=" width: 100%;height: 45%;">
   <div class="card-body"  *ngIf="Incident1.statut.id==1" style="font-weight: bold;color:red;" >
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
@@ -130,9 +136,9 @@
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item" *ngIf="Incident1"><label for="">Description : </label>{{Incident1.description}}</li>
+<li class="list-group-item"><label for="">secteur : </label>{{Incident1.secteur.secteur}}</li>
+<li class="list-group-item"><label for="">Province : </label>{{Incident1.province.province}}</li>
+<li class="list-group-item"><label for="">Longitude : </label>{{Incident1.longitude}}</li>
+<li class="list-group-item"><label for="">Latitude : </label>{{Incident1.latitude}}</li>
   </ul>
-  
- 
-  
 </div>
