@@ -6,6 +6,7 @@ import { SingleDataSet, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } fr
 import { IncidentService } from '../services/Incident.service';
 import { SecteurService } from '../services/Secteur.service';
 import { HttpClient } from '@angular/common/http';
+//import 'chartjs-plugin-datalabels';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -164,6 +165,7 @@ sect_statistique: any;
     
       plugins: {
         datalabels: {
+          render: 'secteur',
           display: true,
           align: 'bottom',
           backgroundColor: '#ccc',

@@ -38,6 +38,7 @@ import { MapComponent } from './map/map.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatIconModule} from '@angular/material/icon';
 import {MatButtonModule} from '@angular/material/button';
+import { ProfilComponent } from './profil/profil.component';
 
 
 // Use fcRoot function to inject FusionCharts library, and the modules you want to use
@@ -48,6 +49,7 @@ FusionChartsModule.fcRoot(FusionCharts, Charts);
 
 const routes: Routes = [
   {path: 'acceuil', component: AcceuilComponent},
+  {path: 'profil', component: ProfilComponent},
   {path: 'SIG', component: SIGComponent},
   {path: 'professionnel', component: ProfessionnelComponent},
   {path: 'administration', component: AdministrationComponent},
@@ -71,7 +73,8 @@ const routes: Routes = [
     LoginComponent,
     GestionUtilisateurComponent,
     SidebarComponent,
-    MapComponent
+    MapComponent,
+    ProfilComponent
     ],
   imports: [
     BrowserModule,

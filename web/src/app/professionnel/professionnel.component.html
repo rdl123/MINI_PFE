@@ -48,28 +48,28 @@
         </thead>
         <tbody>
         <tr *ngFor="let item of ownIncidents">
-          <td scope="row" >
+          <td *ngIf="item.statut.etat!= 'Traité'" scope="row" >
             <img class="image" [src]="item.photo">
           </td>
-          <td scope="row">{{ item.description }}</td>
-          <td scope="row">{{ item.secteur.secteur }}</td>
-          <td scope="row">{{ item.type.type }}</td>
-          <td scope="row">{{ item.province.province }}</td>
-          <td scope="row">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19) }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==1" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==4" style="font-weight: bold;color: orange;">{{ item.statut.etat }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==6" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
-          <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'Traité'" scope="row">{{ item.description }}</td>
+          <td *ngIf="item.statut.etat!= 'Traité'" scope="row">{{ item.secteur.secteur }}</td>
+          <td *ngIf="item.statut.etat!= 'Traité'" scope="row">{{ item.type.type }}</td>
+          <td *ngIf="item.statut.etat!= 'Traité'" scope="row">{{ item.province.province }}</td>
+          <td *ngIf="item.statut.etat!= 'Traité'" scope="row">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19) }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  && item.statut.id==1" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==4" style="font-weight: bold;color: orange;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==6" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
+          <td *ngIf="item.statut.etat!= 'declare' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==7" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
     
           
           
           
           
 
-          <button type="submit" class="edit" (click)="edit(item)" class="monBoutton1">Editer</button>
+          <button *ngIf="item.statut.etat!= 'Traité'" type="submit" class="edit" (click)="edit(item)" class="monBoutton1">Editer</button>
         </tr>
         </tbody>
       </table>
