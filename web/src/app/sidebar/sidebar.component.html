@@ -25,6 +25,12 @@
           <span style="font-size :18px">Gestion des professionnels</span>
           </a>
       </li>
+      <li class="sub-menu" id=4 *ngIf="currentRole === 'professionnel'" >
+        <a data-toggle="tab" routerLink="/profil" routerLinkActive="active">
+          
+          <span style="font-size :18px">Editer mon profil</span>
+          </a>
+      </li>
       <li class="sub-menu" id=5 *ngIf="currentRole === 'professionnel'" >
         <a data-toggle="tab" routerLink="/professionnel" routerLinkActive="active">
           

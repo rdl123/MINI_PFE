@@ -317,10 +317,14 @@ statut: any;
 
   }
   isShow = false; 
+  isShow1 = false; 
  
   toggleDisplay() {
     this.isShow = !this.isShow;
     this.map.setView([31.1728205, -7.3362482], 6);}
+    toggleDisplay3(){
+      this.isShow = !this.isShow;
+    }
 
     edit(item){
       this.incidentService.findAllIncident().subscribe(
@@ -336,6 +340,7 @@ statut: any;
               this.marker(this.selectedincidents);
               this.IncidentChoisi = item;
              this.SecteurIncident = item.secteur.secteur;
+             this.isShow1 = true;
              
   
     }

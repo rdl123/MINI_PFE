@@ -367,7 +367,9 @@ export class AdministrationComponent implements OnInit {
     this.isShow = !this.isShow;
     this.map.setView([31.1728205, -7.3362482], 6);}
 
- 
+    toggleDisplay3(){
+      this.isShow = !this.isShow;
+    }
 
 
 

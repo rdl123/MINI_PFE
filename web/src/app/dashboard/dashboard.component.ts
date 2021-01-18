@@ -6,6 +6,7 @@ import { SingleDataSet, monkeyPatchChartJsLegend, monkeyPatchChartJsTooltip } fr
 import { IncidentService } from '../services/Incident.service';
 import { SecteurService } from '../services/Secteur.service';
 import { HttpClient } from '@angular/common/http';
+//import 'chartjs-plugin-datalabels';
 import * as Highcharts from 'highcharts';
 
 @Component({
@@ -147,15 +148,7 @@ sect_statistique: any;
     monkeyPatchChartJsTooltip();
     monkeyPatchChartJsLegend();
    }
-  // pie Chart
-  public pieChartOptions: ChartOptions = {
-    responsive: true,
-  };
-  public pieChartLabels: Label[] = this.LabelsProv;
-  public pieChartData: SingleDataSet = this.ValuesProv;
-  public pieChartType: ChartType = 'pie';
-  public pieChartLegend = true;
-  public pieChartPlugins = [];
+
 
 
 // secteur
@@ -164,6 +157,7 @@ sect_statistique: any;
     
       plugins: {
         datalabels: {
+          render: 'secteur',
           display: true,
           align: 'bottom',
           backgroundColor: '#ccc',
@@ -177,9 +171,10 @@ sect_statistique: any;
   };
  
   barChartLabels: Label[] = this.Labels;
-  barChartType: ChartType = 'pie';
+  barChartType: ChartType = 'radar';
   barChartLegend = true;
-  barChartPlugins = [];
+  barChartPlugins = {
+  };
   
 
   barChartData: ChartDataSets[] = [

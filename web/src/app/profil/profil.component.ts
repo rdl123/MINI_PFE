@@ -11,13 +11,14 @@ import {data} from '../../assets/data/incidents';
 import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
 import { Role } from '../entities/Role';
 import { Route } from '@angular/compiler/src/core';
+import { LoginService } from '../services/Login.service';
 
 @Component({
-  selector: 'app-gestion-utilisateur',
-  templateUrl: './gestion-utilisateur.component.html',
-  styleUrls: ['./gestion-utilisateur.component.scss']
+  selector: 'app-profil',
+  templateUrl: './profil.component.html',
+  styleUrls: ['./profil.component.scss']
 })
-export class GestionUtilisateurComponent implements OnInit {
+export class ProfilComponent implements OnInit {
 listUsers: any;
 listProf = [];
   modalRef: BsModalRef;
@@ -35,6 +36,7 @@ listProf = [];
   selectedSecteur2: any;
   totalRecords: String;
   page : Number = 1;
+  currentUser: User;
   formData: FormGroup = this.formBuilder.group({
   username: [null],
   fullname: [null],
@@ -44,7 +46,7 @@ listProf = [];
   telephone: [null],
   secteurUser : [null]
   });
-  constructor(private userService: UserService, private  http: HttpClient,
+  constructor(private userService: UserService, private  http: HttpClient,private loginService: LoginService,
               private modalService: BsModalService, private router: Router,
               private Secteurservice: SecteurService, private formBuilder: FormBuilder) {
     this.user = new User();
@@ -54,18 +56,13 @@ listProf = [];
   }
 
   ngOnInit() {
-    this.userService.findAllUsers().subscribe(
-      data => {
-        this.listUsers = data;
-        for (let i = 0; i < this.listUsers.length; i++) {
-          if (this.listUsers[i].role.role == 'professionnel') {
-            this.listProf.push(this.listUsers[i]);
-          }
-        }
-        console.log(this.listUsers);
-        console.log(this.listUsers[1].fullname);
-      }
-    );
+    this.loginService.currentUser.subscribe(newUser => {
+       this.currentUser = newUser;
+            
+      });
+
+      this.listProf.push(this.currentUser);
+
   }
   getSecteur() {
     this.Secteurservice.findAllSecteur().subscribe(
@@ -75,6 +72,7 @@ listProf = [];
   }
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+    console.log(this.item);
 
 
 
@@ -117,40 +115,7 @@ listProf = [];
 
     }
   }
-  add() {
-    console.log(this.listUsers.length);
-    //for (let i = 0; i < this.listUsers.length; i++);
-    this.user.id = this.listUsers.length+1;
-    this.user.role=new Role();
-    this.user.role.id = 2;
-    this.user.role.role =  'professionnel';
-    this.modalRef.hide();
-    this.router.navigateByUrl('/gestion');
-    this.userService.addUser(this.user).subscribe(
-      data => {
-             console.log(data);
-             this.errDuplicqted = '';
-             this.user.username = null;
-             this.user.telephone = null;
-             this.user.email = null;
-             this.user.organisme = null;
-             this.user.password = null;
-             this.user.fullname = null;
-             this.ngOnInit();
-      },
-      err => {
 
-          if (this.user.password == null) {this.errpassword = 'ce champ est obligatoire'; }
-          if (this.user.fullname == null) {this.errfullname = 'ce champ est obligatoire'; }
-
-          if (this.user.username == null) {
-          this.errusername = 'ce champ est obligatoire'; }
-      }
-
-    );
-    console.log(this.user);
-
-  }
   update() {
     this.user.role=new Role();
     this.user.role.id = 2;
@@ -191,6 +156,7 @@ listProf = [];
     this.item = item;
     console.log(this.item);
 
+
     console.log(this.selectedSecteur2);
   }
   hide() {
@@ -204,3 +170,92 @@ listProf = [];
   }
 
 }
+
+
+// import { Component, OnInit, TemplateRef } from '@angular/core';
+// import {LoginService} from '../services/Login.service';
+// import {UserService} from '../services/UserService';
+// import {BsModalRef, BsModalService} from 'ngx-bootstrap';
+// import {LoginDtoData} from '../Security/Component/shared/data/login-dto.data';
+// import {FormBuilder, FormGroup} from '@angular/forms';
+// import {User} from '../entities/User';
+// import {IncidentService} from '../services/Incident.service';
+// import {HttpClient} from '@angular/common/http';
+// import {SecteurService} from '../services/Secteur.service';
+// import {Secteur} from '../entities/Secteur';
+// import { Router } from '@angular/router';
+// import {data} from '../../assets/data/incidents';
+// import {NULL_EXPR} from '@angular/compiler/src/output/output_ast';
+// import { Role } from '../entities/Role';
+// import { Route } from '@angular/compiler/src/core';
+
+// @Component({
+//   selector: 'app-profil',
+//   templateUrl: './profil.component.html',
+//   styleUrls: ['./profil.component.scss']
+// })
+// export class ProfilComponent implements OnInit {
+
+  
+//    //------------------
+
+
+//   listUsers: any;
+// listProf = [];
+//   modalRef: BsModalRef;
+//   user: User;
+//   ListSecteur: any;
+//   idSecteurChoisi: any;
+//   data: any;
+//   errDuplicqted: string;
+//   errusername: string;
+//   errfullname: string;
+//   item: any;
+//   currentUser: User;
+//   selectedsecteur : Secteur;
+//   errpassword: string;
+//   i: number;
+//   selectedSecteur2: any;
+//   totalRecords: String;
+//   page : Number = 1;
+//   formData: FormGroup = this.formBuilder.group({
+//   username: [null],
+//   fullname: [null],
+//   password: [null],
+//   organisme: [null],
+//   email: [null],
+//   telephone: [null],
+//   secteurUser : [null]
+//   });
+
+//   test: string;
+//   message: string;
+//   IdUserChoisi: any;
+//   constructor(private loginService: LoginService, private modalService: BsModalService,private router: Router,
+//               private formBuilder: FormBuilder ,private userService: UserService, private incidentService: IncidentService) {
+
+//   }
+//   ngOnInit() {
+//     this.loginService.currentUser.subscribe(newUser => {
+//       this.currentUser = newUser;
+      
+//     });
+//   }
+
+//   update() {
+//     this.currentUser.role=new Role();
+//     this.currentUser.role.id = 2;
+//     this.currentUser.role.role =  'professionnel';
+
+//     this.userService.updateuser(this.currentUser).subscribe(
+//       data => {
+//         console.log(data);
+//       }
+
+//     );
+//     console.log(this.currentUser);
+//   }
+  
+// }
+
+

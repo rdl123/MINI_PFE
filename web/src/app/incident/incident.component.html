@@ -11,7 +11,7 @@
                  <option  [value]=null  >Selectionner un statut </option>
                  <option  [value]=0 >validé  </option>
                  <option  [value]=1 >en cours de traitement</option>
-                 <option  [value]=2 >Traité </option>
+                 <!-- <option  [value]=2 >Traité </option> -->
                   <option  [value]=3  >Bloqué </option>
                    <option  [value]=4  >redirigé</option>
          </select>
@@ -69,19 +69,19 @@
     
     <tbody>
     <tr *ngFor="let item of ListIncident">
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité'  "><img class="image" [src]="item.photo" (click)="oneIncident(item)"></td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' ">{{ item.description }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' ">{{ item.secteur.secteur }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' ">{{ item.type.type }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité'">{{ item.province.province }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité'">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19)  }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==1" style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==4" style="font-weight: bold;color: rgb(255, 81, 0);">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==7" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
-    <td *ngIf="item.statut!= 'declare' && item.statut != 'rejeté' && item.statut != 'Traité' && item.statut.id==6" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  "><img class="image" [src]="item.photo" (click)="oneIncident(item)"></td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  ">{{ item.description.substring(0,20) }} ...</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' ">{{ item.secteur.secteur }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  ">{{ item.type.type }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' ">{{ item.province.province }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' ">{{ item.date.substring(0,10) +" "+ item.date.substring(11,19)  }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==1"  style="font-weight: bold;color: red;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  && item.statut.id==2" style="font-weight: bold;color: #FBD72B;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==3" style="font-weight: bold;color: green;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  && item.statut.id==4" style="font-weight: bold;color: rgb(255, 81, 0);">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité' && item.statut.id==5" style="font-weight: bold;color: grey;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  && item.statut.id==7" style="font-weight: bold;color: blue;">{{ item.statut.etat }}</td>
+    <td *ngIf="item.statut.etat != 'declaré' && item.statut.etat != 'rejeté' && item.statut.etat != 'Traité'  && item.statut.id==6" style="font-weight: bold;color: cornflowerblue;">{{ item.statut.etat }}</td>
     
     
     
@@ -99,7 +99,7 @@
         (page)="pageEvent = setPage($event)"></mat-paginator>
       </ul>
    
-     
+      
     
      
  </div>
@@ -107,7 +107,6 @@
 
 <div  [hidden] = "!isShow" id="map" style="flex: 1; padding: 1em;"></div>
 <div [hidden] = "!isShow2" class="card" *ngIf="Incident1" >
-  <img class="card-img-top" [src]="Incident1.photo" alt="" class="image1" style=" width: 95%;height: 35%;">
   <div class="card-body"  *ngIf="Incident1.statut.id==1" style="font-weight: bold;color:red;" >
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
   </div>
@@ -130,12 +129,18 @@
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
   </div>
   <ul class="list-group list-group-flush">
-    <li class="list-group-item"> <label for="">Date : </label> {{Incident1.date.substring(0,10) +" "+ Incident1.date.substring(11,19)  }}</li>
-    <li class="list-group-item"><label for="">secteur : </label>{{Incident1.secteur.secteur}}</li>
-    <li class="list-group-item"><label for="">Province : </label>{{Incident1.province.province}}</li>
     <li class="list-group-item" *ngIf="Incident1"><label for="">Description : </label>{{Incident1.description}}</li>
   </ul>
+</div>
+<div [hidden] = "!isShow2" class="card pipi" *ngIf="Incident1" >
   
- 
+  <img class="card-img-top" [src]="Incident1.photo" alt="" class="image1" style=" width: 100%;height: 40%;">
   
+  <ul class="list-group list-group-flush">
+<li class="list-group-item"><label for="">secteur : </label>{{Incident1.secteur.secteur}}</li>
+<li class="list-group-item"><label for="">Type : </label>{{Incident1.type.type}}</li>
+<li class="list-group-item"><label for="">Province : </label>{{Incident1.province.province}}</li>
+<li class="list-group-item"><label for="">Longitude : </label>{{Incident1.longitude}}</li>
+<li class="list-group-item"><label for="">Latitude : </label>{{Incident1.latitude}}</li>
+  </ul>
 </div>
