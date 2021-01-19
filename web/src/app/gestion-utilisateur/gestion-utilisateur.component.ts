@@ -189,6 +189,7 @@ listProf = [];
   openModal1(template: TemplateRef<any>, item) {
     this.modalRef = this.modalService.show(template);
     this.item = item;
+    console.log(this.item);
 
     console.log(this.selectedSecteur2);
   }

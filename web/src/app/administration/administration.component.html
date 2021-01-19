@@ -59,7 +59,7 @@
             <td scope="row" *ngIf=" item.statut.etat === 'declaré' || item.statut.etat === 'rejeté' || item.statut.etat === 'validé'" >
               <img class="image" [src]="item.photo">
             </td>
-            <td scope="row" *ngIf=" item.statut.etat === 'declaré' || item.statut.etat === 'rejeté' || item.statut.etat === 'validé'">{{ item.description }}</td>
+            <td scope="row" *ngIf=" item.statut.etat === 'declaré' || item.statut.etat === 'rejeté' || item.statut.etat === 'validé'">{{ item.description.substring(0,20)}}...</td>
             <!-- <td scope="row" *ngIf=" item.statut.etat === 'declaré' || item.statut.etat === 'rejeté' || item.statut.etat === 'validé'">{{ item.statut.etat }}</td> -->
             <td scope="row" *ngIf=" item.statut.etat === 'declaré' || item.statut.etat === 'rejeté' || item.statut.etat === 'validé'">{{ item.secteur.secteur }}</td>
             <td scope="row" *ngIf=" item.statut.etat === 'declaré' || item.statut.etat === 'rejeté' || item.statut.etat === 'validé'">{{ item.type.type }}</td>
@@ -81,47 +81,63 @@
 <div  [hidden] = "!isShow" id="map" style="flex: 1; padding: 1em;"></div>
 
 <div [hidden] = "!isShow" class="card" *ngIf="Incident1" >
-  <img class="card-img-top" [src]="Incident1.photo" alt="" class="image1">
-  <div class="card-body"  *ngIf="Incident1.statut.id==5" style="font-weight: bold;color:grey;" >
+      <img class="card-img-top" [src]="Incident1.photo" alt="" class="image1">
+      
+      <ul class="list-group list-group-flush">
+        <li class="list-group-item"> <label for="">Date : </label> {{Incident1.date.substring(0,10) +" "+ Incident1.date.substring(11,19)  }}</li>
+        <li class="list-group-item"><label for="">secteur : </label>{{Incident1.secteur.secteur}}</li>
+        <li class="list-group-item"><label for="">Type : </label>{{Incident1.type.type}}</li>
+        <li class="list-group-item"><label for="">Province : </label>{{Incident1.province.province}}</li>
+        <li class="list-group-item"><label for="">Longitude : </label>{{Incident1.longitude}}</li>
+        <li class="list-group-item"><label for="">Latitude : </label>{{Incident1.latitude}}</li>
+ 
+      </ul>
+      
+     
+      
+ </div>
+
+ <div [hidden] = "!isShow" class="card2" *ngIf="Incident1">
+      
+  <button mat-icon-button class="button3" style="position: absolute;" >
+    <mat-icon aria-hidden="false" (click) = toggleDisplay3()
+    >arrow_back</mat-icon>
+  </button>
+
+  <div class="card-body"  *ngIf="Incident1.statut.id==1" style="font-weight: bold;color: red;" >
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==2" style="font-weight: bold;color: #FBD72B;" >
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
   </div>
   <div class="card-body"  *ngIf="Incident1.statut.id==3" style="font-weight: bold;color: green;" >
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
   </div>
-  <div class="card-body"  *ngIf="Incident1.statut.id==6" style="font-weight: bold;color: blue;" >
+  <div class="card-body"  *ngIf="Incident1.statut.id==4" style="font-weight: bold;color: orange;">
     <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
   </div>
-  <ul class="list-group list-group-flush">
-    <li class="list-group-item"> <label for="">Date : </label> {{Incident1.date.substring(0,10) +" "+ Incident1.date.substring(11,19)  }}</li>
-    <li class="list-group-item"><label for="">secteur : </label>{{Incident1.secteur.secteur}}</li>
-    <li class="list-group-item"><label for="">Province : </label>{{Incident1.province.province}}</li>
-  </ul>
+  <div class="card-body"  *ngIf="Incident1.statut.id==5" style="font-weight: bold;color: grey;">
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==6" style="font-weight: bold;color: blue;">
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
+  <div class="card-body"  *ngIf="Incident1.statut.id==7" style="font-weight: bold;color: cornflowerblue;">
+    <h4 class="card-title" style="text-align: center;">{{Incident1.statut.etat}}</h4>
+  </div>
   
- 
-  
-</div>
+<select   name="statut"  (change)="changeStatut($event)" class="form-control">
+  <option  [value]=null  >Selectionner un statut </option>
+  <option  *ngFor="let s of list_statut2"  >{{s}}</option>
+</select>
 
- <div [hidden] = "!isShow" class="card2">
-  <label>statut:</label>
-  <select   name="statut"  (change)="getStatut($event)" class="form-control">
-    <option  [value]=null  >Selectionner un statut </option>
-    <option  *ngFor="let s of statut" >{{s}}</option>
-  </select>
-  <br>
-  <label *ngIf="StatutChoisi === 'validé'"> Professionnel:</label>
-  <select   name="user"   *ngIf="StatutChoisi === 'validé'" (change)="do2($event)" class="form-control">
-    <option  [value]=null  >Selectionner un  Professionnel </option>
-    <option  *ngFor="let s of prof"  value={{s.id}}>{{s.name}}</option>
-  </select>
-  <br>
-  <input *ngIf="StatutChoisi === 'rejeté'" type="text"  id="Motif" class="form-control"   placeholder="Motif" (change)="motif($event)" >
-  <br>
-  <button type="submit" (click)="submit()" class="monBoutton" >valider</button>
-  <br>
-  <br>
-  <br>
-  <br>
-  <p></p>
-  <li class="list-group-item" *ngIf="Incident1"><label for="">Description : </label>{{Incident1.description}}</li>
- </div>
+
+<br>
+<button type="submit" (click)="submit()"class="monBoutton1" >valider</button>
+<br>
+<br>
+<p></p>
+
+<li class="list-group-item" *ngIf="Incident1"><label for="">Description : </label>{{Incident1.description}}</li>
+</div>
 </div>
