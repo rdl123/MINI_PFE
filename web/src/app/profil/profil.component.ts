@@ -72,6 +72,7 @@ listProf = [];
   }
   openModal(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
+    console.log(this.item);
 
 
 
@@ -114,40 +115,7 @@ listProf = [];
 
     }
   }
-  add() {
-    console.log(this.listUsers.length);
-    //for (let i = 0; i < this.listUsers.length; i++);
-    this.user.id = this.listUsers.length+1;
-    this.user.role=new Role();
-    this.user.role.id = 2;
-    this.user.role.role =  'professionnel';
-    this.modalRef.hide();
-    this.router.navigateByUrl('/gestion');
-    this.userService.addUser(this.user).subscribe(
-      data => {
-             console.log(data);
-             this.errDuplicqted = '';
-             this.user.username = null;
-             this.user.telephone = null;
-             this.user.email = null;
-             this.user.organisme = null;
-             this.user.password = null;
-             this.user.fullname = null;
-             this.ngOnInit();
-      },
-      err => {
 
-          if (this.user.password == null) {this.errpassword = 'ce champ est obligatoire'; }
-          if (this.user.fullname == null) {this.errfullname = 'ce champ est obligatoire'; }
-
-          if (this.user.username == null) {
-          this.errusername = 'ce champ est obligatoire'; }
-      }
-
-    );
-    console.log(this.user);
-
-  }
   update() {
     this.user.role=new Role();
     this.user.role.id = 2;
@@ -186,6 +154,8 @@ listProf = [];
   openModal1(template: TemplateRef<any>, item) {
     this.modalRef = this.modalService.show(template);
     this.item = item;
+    console.log(this.item);
+
 
     console.log(this.selectedSecteur2);
   }
